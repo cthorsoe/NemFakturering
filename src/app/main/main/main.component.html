@@ -1,5 +1,34 @@
-<p>
-  main works!
-</p>
-
-<router-outlet></router-outlet>
+<div class="wrapper">
+   <div class="sidebar">
+      <div class="sidebar-wrapper">
+         <div class="logo">
+            <a routerLink="/index" class="simple-text">Nem Fakturering</a>
+         </div>
+         <ul class="nav">
+            <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./index">
+                  <p>Hjem</p>
+               </a>
+            </li>
+            <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./invoice">
+                  <p>Fakturer</p>
+               </a>
+            </li>
+            <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./customers">
+                  <p>Kunder</p>
+               </a>
+            </li>
+            <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./configuration">
+                  <p>Opsætning</p>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="content">
+      <router-outlet></router-outlet>
+   </div>
+</div>
