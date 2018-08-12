@@ -2,33 +2,60 @@
    <div class="sidebar">
       <div class="sidebar-wrapper">
          <div class="logo">
-            <a routerLink="/index" class="simple-text">Nem Fakturering</a>
+            <a routerLink="./" class="simple-text">Nem Fakturering</a>
          </div>
          <ul class="nav">
             <li>
-               <a class="nav-link" routerLinkActive="active" routerLink="./index">
+               <a class="nav-link" routerLinkActive="active" routerLink="./">
+                  <fa-icon [icon]="faHome"></fa-icon>
                   <p>Hjem</p>
                </a>
             </li>
             <li>
                <a class="nav-link" routerLinkActive="active" routerLink="./invoice">
+                  <fa-icon [icon]="faReceipt"></fa-icon>
                   <p>Fakturer</p>
                </a>
             </li>
             <li>
                <a class="nav-link" routerLinkActive="active" routerLink="./customers">
+                  <fa-icon [icon]="faAddressBook"></fa-icon>
                   <p>Kunder</p>
                </a>
             </li>
             <li>
                <a class="nav-link" routerLinkActive="active" routerLink="./configuration">
+                  <fa-icon [icon]="faCog"></fa-icon>
                   <p>Opsætning</p>
                </a>
             </li>
          </ul>
       </div>
    </div>
-   <div class="content">
-      <router-outlet></router-outlet>
+   <div class="main-panel">
+      <nav class="navbar navbar-expand-lg navbar-light">
+         <a class="navbar-brand" href="#">John Doe</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  John Doe
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/account/logout">Logout</a>
+               </div>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <div class="content">
+         <div class="container-fluid">
+            <router-outlet></router-outlet>
+         </div>
+      </div>
    </div>
 </div>

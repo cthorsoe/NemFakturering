@@ -8,8 +8,8 @@ import { AuthAdminGuardService } from '../services/auth-admin-guard.service';
 const routes: Routes = [
     { path: '', component: AdminComponent, canActivate:[AuthAdminGuardService],
       children: [
+         // { path: '', redirectTo:'/admin/index', pathMatch: 'full' },
          { path: '', component: AdminHomeComponent},
-         { path: 'index', component: AdminHomeComponent},
          { path: 'users', component: ManageUsersComponent},
       ],
     },

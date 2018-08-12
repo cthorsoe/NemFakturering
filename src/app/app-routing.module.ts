@@ -20,7 +20,7 @@ const routes: Routes = [
    },
    { path: 'account', component: AccountComponent, 
       children: [
-         { path: '', redirectTo:'/login', pathMatch: 'full' },
+         { path: '', redirectTo:'/', pathMatch: 'full' },
          { path: 'login', component: LoginComponent},
          { path: 'register', component: RegisterComponent},
          { path: 'logout', component: LogoutComponent},
@@ -28,8 +28,8 @@ const routes: Routes = [
    },
    { path: '', component: GuestComponent,
       children: [
-         { path: '', redirectTo:'/index', pathMatch: 'full' },
-         { path: 'index', component: GuestHomeComponent},
+         // { path: '', redirectTo:'/index', pathMatch: 'full' },
+         { path: '', component: GuestHomeComponent},
          { path: 'the-product', component: TheProductComponent},
          { path: 'pricing', component: PricingComponent},
       ]   

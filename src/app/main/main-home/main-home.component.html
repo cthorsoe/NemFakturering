@@ -1,3 +1,42 @@
-<p>
-  main-home works!
-</p>
+<div id="statRow" class="row">
+   <div class="col d-block">
+      <div class="card text-center py-3">
+         <h3>1</h3>
+         <p class="text-small text-muted">Fakturaer generet</p>
+      </div>
+   </div>
+   <div class="col d-none d-sm-block ">
+      <div class="card text-center py-3">
+         <h3>1</h3>
+         <p class="text-small text-muted">Faktureret for totalt</p>
+      </div>
+   </div>
+   <div class="col d-none d-md-block">
+      <div class="card text-center py-3">
+         <h3>1</h3>
+         <p class="text-small text-muted">Gns. fakturaer pr. md.</p>
+      </div>
+   </div>
+   <div class="col d-none d-lg-block">
+      <div class="card text-center py-3">
+         <h3>1</h3>
+         <p class="text-small text-muted">Gns. pris pr. faktura</p>
+      </div>
+   </div>
+   <div class="col d-none d-xl-block">
+      <div class="card text-center py-3">
+         <h3>1</h3>
+         <p class="text-small text-muted">Gns antal vare pr. faktura</p>
+      </div>
+   </div>
+</div>
+<div class="row mt-4">
+   <div class="col">
+      <div class="card">
+         <div class="card-body">
+            <chart [type]="monthlyInvoicesChart.type" [data]="monthlyInvoicesChart.data" [options]="monthlyInvoicesChart.options"></chart>
+         </div>
+      </div>
+   </div>
+   <div class="col"></div>
+</div>

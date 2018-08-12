@@ -56,8 +56,15 @@ main {
             flex-direction: column;
             padding: 15px;
             border-top: 1px solid rgba(255,255,255,.5);
+            fa-icon{
+               width:25px;
+               display: inline-block;
+               font-size: 1.1rem;
+            }
             p{
                margin: 0;
+               display: inline-block;
+               vertical-align: text-bottom;
             }
             .nav-link{
                margin: 2px 0;
@@ -70,7 +77,34 @@ main {
          }
       }
    }
-   .content{
+   .main-panel{   
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      .content{
+         background: #f7f7f7;
+         padding: 30px 15px;
+         flex-grow: 1;
+      }
    }
+}
+
+.navbar{
+   background: #fff;
+   border-bottom: 1px solid rgba(0,0,0,.1);
+   padding: 7.5px 16px;
+}
+
+#statRow {
+   .col {
+      .card {
+         > * {
+            margin:0;
+         }
+      }
+   }
+}
+
+.text-small{
+   font-size: .75rem;
 }

@@ -17,5 +17,6 @@ export class AuthService {
    logout(): void{
       this.isLoggedIn = false;
       this.isAdmin = false;
+      this.router.navigate(['/']);
    }
 }
