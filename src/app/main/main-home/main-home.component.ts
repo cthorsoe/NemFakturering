@@ -1,10 +1,5 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  Chart
-} from 'src/app/entities/chart';
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'src/app/entities/chart';
 
 @Component({
   selector: 'app-main-home',

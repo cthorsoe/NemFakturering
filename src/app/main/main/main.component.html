@@ -2,11 +2,11 @@
    <div class="sidebar">
       <div class="sidebar-wrapper">
          <div class="logo">
-            <a routerLink="./" class="simple-text">Nem Fakturering</a>
+            <a routerLink="./dashboard" class="simple-text">Nem Fakturering</a>
          </div>
          <ul class="nav">
             <li>
-               <a class="nav-link" routerLinkActive="active" routerLink="./">
+               <a class="nav-link" routerLinkActive="active" routerLink="./dashboard">
                   <fa-icon [icon]="faHome"></fa-icon>
                   <p>Hjem</p>
                </a>
@@ -27,6 +27,12 @@
                <a class="nav-link" routerLinkActive="active" routerLink="./configuration">
                   <fa-icon [icon]="faCog"></fa-icon>
                   <p>Opsætning</p>
+               </a>
+            </li>
+            <li *ngIf="isAdmin" class="position-bottom">
+               <a class="nav-link" routerLinkActive="active" routerLink="/admin">
+                  <fa-icon [icon]="faCogs"></fa-icon>
+                  <p>Administration</p>
                </a>
             </li>
          </ul>

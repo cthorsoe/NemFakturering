@@ -48,6 +48,10 @@ main {
                display: block;
                text-align: center;
                padding: 15px 0;
+               text-transform: uppercase;
+               &:hover{
+                  text-decoration: none;
+               }
             }
          }
          .nav{
@@ -56,24 +60,30 @@ main {
             flex-direction: column;
             padding: 15px;
             border-top: 1px solid rgba(255,255,255,.5);
-            fa-icon{
-               width:25px;
-               display: inline-block;
-               font-size: 1.1rem;
-            }
-            p{
-               margin: 0;
-               display: inline-block;
-               vertical-align: text-bottom;
-            }
-            .nav-link{
-               margin: 2px 0;
-               border-radius: 3px;
-               padding: .75rem 1rem;
-               &.active{
-                  background: rgba(255,255,255,.23);
+            li{
+               &.position-bottom{
+                  margin-top:auto;
+               }
+               fa-icon{
+                  width:25px;
+                  display: inline-block;
+                  font-size: 1.1rem;
+               }
+               p{
+                  margin: 0;
+                  display: inline-block;
+                  vertical-align: text-bottom;
+               }
+               .nav-link{
+                  margin: 2px 0;
+                  border-radius: 3px;
+                  padding: .75rem 1rem;
+                  &.active{
+                     background: rgba(255,255,255,.23);
+                  }
                }
             }
+            
          }
       }
    }

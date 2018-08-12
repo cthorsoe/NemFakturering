@@ -10,8 +10,8 @@ import { AuthLoginGuardService } from '../services/auth-login-guard.service';
 const routes: Routes = [
     { path: '', component: MainComponent, canActivate:[AuthLoginGuardService],
       children: [
-         // { path: '', redirectTo:'/app/index', pathMatch: 'full' },
-         { path: '', component: MainHomeComponent},
+         { path: '', redirectTo:'/app/dashboard', pathMatch: 'full' },
+         { path: 'dashboard', component: MainHomeComponent},
          { path: 'invoice', component: InvoiceComponent},
          { path: 'customers', component: CustomersComponent},
          { path: 'configuration', component: ConfigurationComponent},
