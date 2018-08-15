@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 $primaryColor:#008cba;
+$sidebarWidth:250px;
 
 main {
   .carousel-caption {
@@ -34,7 +35,8 @@ main {
    display: flex;
    .sidebar{
       background:$primaryColor;
-      flex-basis: 250px;
+      flex-basis: $sidebarWidth;
+      min-width: $sidebarWidth;
       .sidebar-wrapper{
          height: 100vh;
          display: flex;
@@ -95,6 +97,7 @@ main {
          background: #f7f7f7;
          padding: 30px 15px;
          flex-grow: 1;
+         
       }
    }
 }
@@ -115,6 +118,35 @@ main {
    }
 }
 
+.card{
+   .card-header{
+      &.fill{
+         background: #fff;
+      }
+   }
+   .card-body{
+      background: #fff !important;
+      &.fluid{
+         padding: 1.25rem 0;
+      }
+      &.fluid-top{
+         padding: 0 1.25rem;
+         &.fluid{
+         padding: 0;
+         }
+      }
+   }
+}
+
+
 .text-small{
    font-size: .75rem;
+}
+
+a:not([href]):not([tabindex]){
+   color:$primaryColor;
+   cursor: pointer;
+   &:hover{
+      color:lighten($primaryColor, 10%);
+   }
 }

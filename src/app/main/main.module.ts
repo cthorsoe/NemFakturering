@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChartModule } from 'angular2-chartjs';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
@@ -12,9 +13,10 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     FontAwesomeModule,
-    ChartModule
+    ChartModule,
   ],
   declarations: [MainComponent, MainHomeComponent, InvoiceComponent, CustomersComponent, ConfigurationComponent]
 })

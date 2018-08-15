@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faHome, faReceipt, faCog, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'src/app/entities/chart';
+import { Chart } from '../../entities/chart';
 
 @Component({
   selector: 'app-main-home',

@@ -1,3 +1,96 @@
-<p>
-  customers works!
-</p>
+<div class="card">
+   <div class="card-header fill">
+      <div class="row">
+         <div class="col">
+            <h3>Dine kunder</h3>
+            <p class="text-muted mb-0">Liste over de kunder du kan generere fakturaer til</p>
+         </div>
+         <div class="col-auto">
+            <button (click)="showCustomerModal()" type="button" class="btn btn-primary">Opret ny</button>
+         </div>
+      </div>
+   </div>
+   <div class="card-body fluid fluid-top">
+      <table id="tblCustomerList" class="table table-striped table-hover">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>Navn</th>
+               <th>Kontakt Person</th>
+               <th>CVR</th>
+               <th>Vej</th>
+               <th>Post nr.</th>
+               <th>By</th>
+               <th>Slet</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let customer of customers" (click)="showCustomerModal(customer)">
+               <td>{{ customer.id }}</td>
+               <td>{{ customer.name }}</td>
+               <td>{{ customer.contactperson}}</td>
+               <td>{{ customer.cvr }}</td>
+               <td>{{ customer.street }}</td>
+               <td>{{ customer.zipcode }}</td>
+               <td>{{ customer.city }}</td>
+               <td (click)="deleteCustomer(customer)" class="icon-td"><a><fa-icon [icon]="faTimes"></fa-icon></a></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<div id="customerModal" class="modal fade" tabindex="-1" role="dialog">
+   <div class="modal-dialog modal-lg" role="document">
+      
+      <form id="frmEditCustomer" [formGroup]="customerForm" (submit)="customerFormSubmit(customerForm, $event)" novalidate>
+         <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">{{ editCustomer == null ? 'Opret' : 'Rediger' }} kunde</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="col">
+                     <label for="txtCustomerName">Name</label>
+                     <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="customerForm.controls.name.errors?.required && customerForm.controls.name.touched">
+                        Du skal udfylde et kundenavn
+                     </div>
+                     <input type="text" id="txtCustomerName" formControlName="name" class="form-control mb-2" placeholder="Kunde navn">
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col">
+                     <label for="txtCustomerContact">Kontakt Person</label>
+                     <input type="text" id="txtCustomerContact" formControlName="contactperson" class="form-control mb-2" placeholder="Kontaktperson">
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col">
+                     <label for="txtCustomerCVR">CVR-nummer</label>
+                     <input type="text" id="txtCustomerCVR" formControlName="cvr" class="form-control mb-2" placeholder="CVR">
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col">
+                     <label for="txtCustomerStreet">Vej</label>
+                     <input type="text" id="txtCustomerStreet" formControlName="street" class="form-control mb-2" placeholder="Vej">
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col">
+                     <label for="txtCustomerZip">Post  nr.</label>
+                     <input type="text" id="txtCustomerZip" formControlName="zipcode" class="form-control mb-2" placeholder="Post nr.">
+                  </div>
+                  <div class="col">
+                     <label for="txtCustomerCity">By</label>
+                     <input type="text" id="txtCustomerCity" formControlName="city" class="form-control mb-2" placeholder="By">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">{{ editCustomer == null ? 'Opret' : 'Gem ændringer' }}</button>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>

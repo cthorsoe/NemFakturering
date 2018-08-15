@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable()
 
 export class AuthService {
-   isLoggedIn:boolean = false;
+   isLoggedIn:boolean = true;
    isAdmin:boolean = false;
    redirectUrl:string;
    constructor(private router:Router) { }

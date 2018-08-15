@@ -1,8 +1,14 @@
+/* MODULES */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
+/* SERVICES */
+import { AuthService } from './services/auth.service';
+import { AuthLoginGuardService } from './services/auth-login-guard.service';
+import { AuthAdminGuardService } from './services/auth-admin-guard.service';
+import { AppDataService } from './services/app-data.service';
+/* COMPONENTS */
 import { AppComponent } from './app.component';
 /* ACCOUNT COMPONENTS  */
 import { AccountComponent } from './account/account/account.component';
@@ -14,8 +20,6 @@ import { GuestComponent } from './guest/guest/guest.component';
 import { GuestHomeComponent } from './guest/guest-home/guest-home.component';
 import { TheProductComponent } from './guest/the-product/the-product.component';
 import { PricingComponent } from './guest/pricing/pricing.component';
-import { AuthService } from './services/auth.service';
-import { AuthLoginGuardService } from './services/auth-login-guard.service';
 
 @NgModule({
    declarations: [
@@ -42,7 +46,7 @@ import { AuthLoginGuardService } from './services/auth-login-guard.service';
       AppRoutingModule,
       ReactiveFormsModule
    ],
-   providers: [AuthService, AuthLoginGuardService],
+   providers: [AuthService, AuthLoginGuardService, AuthAdminGuardService, AppDataService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
