@@ -6,5 +6,6 @@ export class Customer {
    public street:string;
    public zipcode:string;
    public city:string;
-   //public deleted:boolean; 
+   public email:string;
+   public phone:string;
 }

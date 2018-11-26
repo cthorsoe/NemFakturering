@@ -150,3 +150,18 @@ a:not([href]):not([tabindex]){
       color:lighten($primaryColor, 10%);
    }
 }
+
+.list-group.list-group-sm .list-group-item{
+   padding: .5rem .5rem;
+}
+
+.list-group-item.list-group-item-action{
+   cursor: pointer;
+}
+
+#searchItemsList{
+   position: absolute;
+   top:0;
+   left:0;
+   z-index: 1001;
+}

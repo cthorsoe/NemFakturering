@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 /* SERVICES */
 import { AuthService } from './services/auth.service';
 import { AuthLoginGuardService } from './services/auth-login-guard.service';
@@ -26,25 +27,18 @@ import { PricingComponent } from './guest/pricing/pricing.component';
       AppComponent,
       AccountComponent,
       GuestComponent,
-      // MainComponent,
-      // AdminComponent,
       GuestHomeComponent,
       TheProductComponent,
       PricingComponent,
       LoginComponent,
       RegisterComponent,
       LogoutComponent,
-      // AdminHomeComponent,
-      // ManageUsersComponent,
-      // InvoiceComponent,
-      // CustomersComponent,
-      // ConfigurationComponent,
-      // MainHomeComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule
    ],
    providers: [AuthService, AuthLoginGuardService, AuthAdminGuardService, AppDataService],
    bootstrap: [AppComponent]

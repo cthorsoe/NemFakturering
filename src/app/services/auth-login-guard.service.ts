@@ -16,9 +16,9 @@ export class AuthLoginGuardService implements CanActivate {
 
    checkLogin(url: string): boolean {
       this.authService.redirectUrl = url;
-      console.log('URL SET TO', url)
+      console.log('LOGGED IN IS', this.authService.isLoggedIn)
       if (this.authService.isLoggedIn) { 
-          return true; 
+         return true; 
       }
       this.router.navigate(['account/login']);
       return false;

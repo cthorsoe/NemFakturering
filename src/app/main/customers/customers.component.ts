@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Customer } from '../../entities/customer';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppDataService } from 'src/app/services/app-data.service';
-import { CustomerService } from 'src/app/services/handlers/customer.service';
+import { CustomerService } from '../../services/handlers/customer.service';
+import { LanguageService } from '../../services/language.service';
+import { CustomersLanguageService } from '../../languages/customers/customers-language.service';
+import { AppDataService } from '../../services/app-data.service';
 
 declare var $:any;
 
@@ -12,25 +14,43 @@ declare var $:any;
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss']
 })
-export class CustomersComponent implements OnInit {
-
+export class CustomersComponent implements OnInit, OnDestroy {
    customerForm: FormGroup;
-   customers:Array<Customer>;
+   customers:Customer[];
    editCustomer:Customer;
    faTimes = faTimes;
-   constructor(private customerService:CustomerService, private fb: FormBuilder) { }
+   faEdit = faEdit;
+   strings:CustomersLanguageService;
+   subscription;
+   constructor(private customerService:CustomerService, private customersLangService:CustomersLanguageService, private fb: FormBuilder, private appService:AppDataService) {
+      this.strings = customersLangService;
+   }
 
    ngOnInit() {
       this.createEmptyForm();
-      this.customers = this.customerService.getCustomers();
+      this.subscription = this.appService.customersSubject.subscribe((customers: Customer[]) => {
+         console.log('VIEW SUBSCRIBE TRIGGER');
+         this.customers = customers;
+      });
+      this.customerService.setCustomers();
+      console.log('SET CUSTOMERS TO', this.customers)
+      console.log('RESPONSE')
+
+      
+   }
+   ngOnDestroy(){
+      if(this.subscription){
+         this.subscription.unsubscribe();
+      }
    }
    
 
-   deleteCustomer(customer:Customer){
-      this.customers = this.customerService.deleteCustomer(customer);
+   deleteCustomer(customerId:number){
+      this.customerService.deleteCustomer(customerId);
    }
 
-   showCustomerModal(customer:Customer = undefined){
+   showCustomerModal(customer:Customer = undefined, event:Event){
+      console.log('EVENT', event);
       if(customer == undefined){
          this.createEmptyForm();
          this.editCustomer = null;
@@ -69,9 +89,9 @@ export class CustomersComponent implements OnInit {
       var newCustomer:Customer = customerForm.value as Customer;
       if(this.editCustomer != null){
          newCustomer.id = this.editCustomer.id;
-         this.customers = this.customerService.updateCustomer(newCustomer);
+         this.customerService.updateCustomer(newCustomer);
       }else{
-         this.customers = this.customerService.createCustomer(newCustomer);
+         this.customerService.createCustomer(newCustomer);
       }
       $("#customerModal").modal('hide');
    }

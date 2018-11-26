@@ -1,3 +1,5 @@
+import { AccountConfiguration } from "./configuration";
+
 export class Account { 
    public id:number;
    public name:string;
@@ -7,4 +9,5 @@ export class Account {
    public city:string;
    public email:string;
    public phone:string;
+   public configuration:AccountConfiguration
 }

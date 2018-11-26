@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
    }
 
    loginFormSubmit(loginForm:FormGroup, event:Event){
-      console.log('SUBMIT')
       this.authService.login(this.randomAdmin == 1 ? true : false);
       this.router.navigate([this.authService.redirectUrl != undefined ? this.authService.redirectUrl : '/app']);
    }

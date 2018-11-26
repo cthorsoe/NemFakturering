@@ -1,65 +1,110 @@
 import {  Injectable } from '@angular/core';
 import { Customer } from '../../entities/customer';
 import { AppDataService } from '../app-data.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/enviroments';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-
-  constructor(private dataService:AppDataService) {
-  }
-
-   setCustomers(): void {
-      this.dataService.customers = new Array<Customer>();
-      console.log('GETTING CUSTOMER DATA');
-      var customer: Customer = new Customer();
-      customer.id = 1;
-      customer.name = "CTH";
-      customer.contactperson = "Christian Thorsø";
-      customer.cvr = "123456789";
-      customer.street = "Valby Maskinfabriksvej 17, 3. 2";
-      customer.zipcode = "2500";
-      customer.city = "Valby";
-      this.dataService.customers.push(customer);
-      customer = new Customer();
-      customer.id = 2;
-      customer.name = "NS";
-      customer.contactperson = "Nanna Søderquist";
-      customer.cvr = "123456789";
-      customer.street = "Engdraget 74";
-      customer.zipcode = "2500";
-      customer.city = "Valby";
-      this.dataService.customers.push(customer);
+   apiUrl:string = environment.apiUrl;
+   constructor(private dataService:AppDataService, private router:Router, private http:HttpClient) {
+      
    }
 
-   getCustomers(){
+   setCustomers(){
       if(this.dataService.customers == undefined){
-         this.setCustomers();
+         var observ = this.requestCustomers(6 /*this.dataService.account.id*/)
+         observ.subscribe((customers: Customer[]) => {
+            this.dataService.customers = customers;
+            this.dataService.customersSubject.next(customers);
+            console.log(this.dataService.customers);
+         });
+      }else{
+         this.dataService.customersSubject.next(this.dataService.customers);
       }
-      return this.dataService.customers;
+   }
+   requestCustomers(accountId:number) : Observable<Customer[]>{
+      var observ = this.http.get<Customer[]>(this.apiUrl + 'customers/list/' + accountId);
+      return observ;
    }
 
-   deleteCustomer(customer: Customer): Array < Customer > {
-      const index: number = this.dataService.customers.findIndex(x => x.id == customer.id);
-      if (index > -1) {
-         this.dataService.customers.splice(index, 1);
+   deleteCustomer(customerId:number){
+      if(this.dataService.customers != undefined){
+         var observ = this.http.delete<any>(this.apiUrl + 'customers/delete/' + customerId);
+         // this.dataService.customersObserv = observ;
+         observ.subscribe((response: any) => {
+            if(response.deleted){
+               var customers = this.dataService.customers;
+               const index = customers.findIndex(x => x.id == customerId);
+               if(index > -1){
+                  customers.splice(index, 1);
+                  this.dataService.customers = customers;
+                  this.dataService.customersSubject.next(customers);
+               }
+            }
+         });
       }
-      return this.dataService.customers;
    }
 
-   updateCustomer(customer: Customer): Array < Customer > {
-      const index: number = this.dataService.customers.findIndex(x => x.id == customer.id);
-      if (index > -1) {
-         this.dataService.customers[index] = customer;
+   updateCustomer(customer:Customer){
+      if(this.dataService.customers != undefined){
+         var observ = this.http.put<any>(this.apiUrl + 'customers/edit/', customer, { responseType:"json" });
+         // this.dataService.customersObserv = observ;
+         observ.subscribe((response: Customer) => {
+            var customers = this.dataService.customers;
+            const index = customers.findIndex(x => x.id == customer.id);
+            if(index > -1){
+               customers[index] = response;
+               this.dataService.customers = customers;
+               this.dataService.customersSubject.next(customers);
+            }
+         });
       }
-      return this.dataService.customers;
    }
 
-   createCustomer(customer: Customer): Array < Customer > {
-      const demoId: number = this.dataService.customers[this.dataService.customers.length - 1].id + 1;
-      customer.id = demoId;
-      this.dataService.customers.push(customer);
-      return this.dataService.customers;
+   createCustomer(customer:Customer){
+      if(this.dataService.customers != undefined){
+         const data = {
+            accountId: 6 /* */,
+            customer: customer
+         }
+         var observ = this.http.post<any>(this.apiUrl + 'customers/create/', data, { responseType:"json" });
+         // this.dataService.customersObserv = observ;
+         observ.subscribe((response: Customer) => {
+            var customers = this.dataService.customers;
+            if(response.id){
+               customers.push(response)
+               this.dataService.customers = customers;
+               this.dataService.customersSubject.next(customers);
+            }
+
+         });
+      }
    }
+   // deleteCustomer(customer: Customer): Array < Customer > {
+   //    const index: number = this.dataService.customers.findIndex(x => x.id == customer.id);
+   //    if (index > -1) {
+   //       this.dataService.customers.splice(index, 1);
+   //    }
+   //    return this.dataService.customers;
+   // }
+
+   // updateCustomer(customer: Customer): Array < Customer > {
+   //    const index: number = this.dataService.customers.findIndex(x => x.id == customer.id);
+   //    if (index > -1) {
+   //       this.dataService.customers[index] = customer;
+   //    }
+   //    return this.dataService.customers;
+   // }
+
+   // createCustomer(customer: Customer): Array < Customer > {
+   //    const demoId: number = this.dataService.customers[this.dataService.customers.length - 1].id + 1;
+   //    customer.id = demoId;
+   //    this.dataService.customers.push(customer);
+   //    return this.dataService.customers;
+   // }
 }

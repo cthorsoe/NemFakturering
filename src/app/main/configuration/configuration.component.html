@@ -1,3 +1,68 @@
-<p>
-  configuration works!
-</p>
+<div class="card">
+      <div class="card-header fill">
+         <div class="row">
+            <div class="col">
+               <h3>{{ strings.configuration[strings.langService.currentLang] }}</h3>
+               <p class="text-muted mb-0">{{ strings.configureSettings[strings.langService.currentLang] }}</p>
+            </div>
+         </div>
+      </div>
+      <div class="card-body">
+         <form id="frmUpdateConfiguration" [formGroup]="configurationForm" (submit)="configurationForm(configurationForm, $event)" novalidate>
+            <div class="row">
+               <div class="col">
+                  <h5>Faktura</h5>
+                  <hr>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtInvoiceNumberStartValue">{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtInvoiceNumberStartValue" formControlName="startvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtInvoiceNumberPrefix">{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtInvoiceNumberPrefix" formControlName="prefix" class="form-control mb-2" placeholder="{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtInvoiceNumberMinLength">{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtInvoiceNumberMinLength" formControlName="minlength" class="form-control mb-2" placeholder="{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+                  <div class="col">
+                     <h5 class="mt-5">Bank information</h5>
+                     <hr>
+                  </div>
+               </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtBankName">{{ strings.bankName[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtBankName" formControlName="bankname" class="form-control mb-2" placeholder="{{ strings.bankName[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtBankRegNumber">{{ strings.bankRegNumber[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtBankRegNumber" formControlName="bankregnumber" class="form-control mb-2" placeholder="{{ strings.bankRegNumber[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtBankAccountNumber">{{ strings.bankAccountNumber[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtBankAccountNumber" formControlName="bankaccountnumber" class="form-control mb-2" placeholder="{{ strings.bankAccountNumber[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row mt-3">
+               <div class="col text-right">
+                  <button type="submit" class="btn btn-primary">{{ strings.update[strings.langService.currentLang] }}</button>
+               </div>
+            </div>
+         </form>
+         
+      </div>
+</div>

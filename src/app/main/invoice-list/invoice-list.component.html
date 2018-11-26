@@ -1,0 +1,54 @@
+<div class="card">
+   <div class="card-header fill">
+      <div class="row">
+         <div class="col">
+            <h3>{{ strings.yourInvoices[strings.langService.currentLang] }}</h3>
+            <p (click)="toggleFilterForm(!showFilterForm)" class="text-muted mb-0">{{ strings.filterList[strings.langService.currentLang] }} <a><fa-icon [icon]="faFilterIcon"></fa-icon></a></p>
+         </div>
+         <div class="w-100"></div>
+         <div class="col">
+            <div class="row">
+               <form *ngIf="showFilterForm" id="frmFilterInvoices" [formGroup]="filterForm" (submit)="filterFormSubmit(filterForm, $event)" novalidate>
+                  <div class="col">
+                     <label for="drpInvoiceCustomerId">{{ strings.customer[strings.langService.currentLang] }}</label>
+                     <select id="drpInvoiceCustomerId" formControlName="customerId" class="form-control">
+                        <option value="0">{{ strings.chooseCustomer[strings.langService.currentLang] }}...</option>
+                        <option *ngFor="let customer of customers" value="{{ customer.id }}">{{ customer.name }}</option>
+                     </select>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col mt-2">
+                     <button type="submit" class="btn btn-primary">{{ strings.filter[strings.langService.currentLang] }}</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="card-body fluid fluid-top">
+      <div class="row">
+         <div class="col">
+            <table id="tblCustomerList" class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>#</th>
+                     <th>{{ strings.date[strings.langService.currentLang] }}</th>
+                     <th>{{ strings.customer[strings.langService.currentLang] }}</th>
+                     <th>{{ strings.items[strings.langService.currentLang] }}</th>
+                     <th>{{ strings.download[strings.langService.currentLang] }}</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let invoice of invoices">
+                     <td>{{ invoice.invoicenumber }}</td>
+                     <td>{{ invoice.createddate | date:'yyyy-MM-dd' }}</td>
+                     <td>{{ invoice.customer.name }}</td>
+                     <td>{{ invoice.items.length }}</td>
+                     <td><a (click)="downloadInvoice(invoice)" ><fa-icon [icon]="faFileDownload"></fa-icon></a></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>

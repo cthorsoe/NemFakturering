@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'nem-fakturering-frontend';
+   title = 'nem-fakturering-frontend';
+
+   ngOnInit() {
+      console.log('INIT');
+   }
 }

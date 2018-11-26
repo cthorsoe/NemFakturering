@@ -2,8 +2,11 @@
       <div class="card-header fill">
          <div class="row">
             <div class="col">
-               <h3>Generer faktura</h3>
-               <p class="text-muted mb-0">Udfyld formen for at lave din faktura</p>
+               <h3>{{ strings.generateInvoice[strings.langService.currentLang] }}</h3>
+               <p class="text-muted mb-0">{{ strings.generateInvoiceDescription[strings.langService.currentLang] }}</p>
+            </div>
+            <div class="col-auto">
+               <a class="btn btn-primary" routerLink="./list">Se dine fakturaer</a>
             </div>
          </div>
       </div>
@@ -11,25 +14,50 @@
          <form id="frmCreateInvoice" [formGroup]="invoiceForm" (submit)="invoiceFormSubmit(invoiceForm, $event)" novalidate>
             <div class="row">
                <div class="col">
-                  <label for="drpInvoiceCustomerId">Kunde</label>
+                  <label for="drpInvoiceCustomerId">{{ strings.customer[strings.langService.currentLang] }}</label>
                   <select id="drpInvoiceCustomerId" formControlName="customerId" class="form-control">
-                     <option value="0">Vælg kunde...</option>
+                     <option value="">{{ strings.chooseCustomer[strings.langService.currentLang] }}...</option>
                      <option *ngFor="let customer of customers" value="{{ customer.id }}">{{ customer.name }}</option>
                   </select>
                </div>
                <div class="w-100"></div>
                <div class="col">
                   <!-- <p *ngFor="let item of invoiceForm.value.items; index as index;">item is {{ item }} index is {{ index }}</p> -->
-                  <label for="drpInvoiceCustomerId">Varer</label>
-                  <input *ngFor="let item of invoiceForm.value.items; index as index;" class="form-control mb-2" value="{{ item }}" type="text" id="txtInvoiceItem.[{{ index }}]" placeholder="Vare">
+                  <label for="drpInvoiceCustomerId">{{ strings.items[strings.langService.currentLang] }}</label>
+                  <div class="row">
+                     <div class="col-sm-2"><span class="text-small">{{ strings.amount[strings.langService.currentLang] }}</span></div>
+                     <div class="col"><span class="text-small">{{ strings.itemName[strings.langService.currentLang] }}</span></div>
+                     <div class="col-sm-2"><span class="text-small">{{ strings.pricePrUnit[strings.langService.currentLang] }}</span></div>
+                  </div>
+                  <!-- <input *ngFor="let item of invoiceForm.get('items').controls; index as index;" class="form-control mb-2" (keyup)="itemFieldInput(index)" value="{{ item.value }}" type="text" id="txtInvoiceItem.[{{ index }}]" placeholder="{{ strings.item[strings.langService.currentLang] }}"> -->
+                  <div #itemList formArrayName="items"
+                     *ngFor="let item of invoiceForm.get('items').controls; let i = index;">
+                     <div class="row" [formGroupName]="i">
+                        <input type="hidden" formControlName="id" class="form-control mb-2">
+                        <div class="col-sm-2">
+                              <input type="number" (keyup)="itemFieldInput(i, 'amount', $event)" formControlName="amount" placeholder="{{ strings.insertAmount[strings.langService.currentLang] }}" class="form-control mb-2">
+                           </div>
+                        <div class="col">
+                           <input formControlName="name" (keyup)="itemFieldInput(i, 'name', $event)" placeholder="{{ strings.insertItemName[strings.langService.currentLang] }}" class="form-control mb-2">
+                        </div>
+                        <div class="col-sm-2">
+                           <input type="number" formControlName="price" placeholder="{{ strings.insertPricePrUnit[strings.langService.currentLang] }}" class="form-control mb-2">
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
             <div class="row mt-3">
                <div class="col text-right">
-                  <button type="submit" class="btn btn-primary">Generer faktura</button>
+                  <button type="submit" class="btn btn-primary">{{ strings.generateInvoice[strings.langService.currentLang] }}</button>
                </div>
             </div>
          </form>
+         
       </div>
 </div>
-
+<div id="searchItemsList" class="list-group list-group-sm" [style.left]="itemsProps.left" [style.top]="itemsProps.top" [style.width]="itemsProps.width">
+   <div class="list-group-item list-group-item-action" *ngFor="let item of searchItems" (click)="pickItemType(item.id)">
+      {{ item.name }} - {{ item.defaultprice }} dkr {{ strings.prUnit[strings.langService.currentLang] }}
+   </div>
+</div>
