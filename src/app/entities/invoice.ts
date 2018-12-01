@@ -1,7 +1,7 @@
 import { Customer } from "src/app/entities/customer";
 import { Item } from "src/app/entities/item";
 
-export class Invoice { 
+export class Invoice {
    public id:number;
    public invoicenumber:string;
    public createddate:Date;
