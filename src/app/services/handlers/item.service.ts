@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AppDataService } from 'src/app/services/app-data.service';
+import { AppDataService } from '../app-data.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/enviroments';
-import { Item } from 'src/app/entities/item';
-import { Observable } from '../../../../node_modules/rxjs';
+import { environment } from '../../environments/environments';
+import { Item } from '../../entities/item';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

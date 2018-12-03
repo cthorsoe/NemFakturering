@@ -6,8 +6,8 @@ import { CustomerService } from './handlers/customer.service';
 import { Account } from '../entities/account';
 import { InvoiceService } from './handlers/invoice.service';
 import { Observable, Subject } from 'rxjs';
-import { Item } from 'src/app/entities/item';
-import { Invoice } from 'src/app/entities/invoice';
+import { Item } from '../entities/item';
+import { Invoice } from '../entities/invoice';
 
 @Injectable({
   providedIn: 'root'

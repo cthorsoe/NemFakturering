@@ -1,5 +1,5 @@
-import { Customer } from "src/app/entities/customer";
-import { Item } from "src/app/entities/item";
+import { Customer } from "./customer";
+import { Item } from "./item";
 
 export class Invoice {
    public id:number;

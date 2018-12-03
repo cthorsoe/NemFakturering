@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfigurationLanguageService } from '../../languages/configuration/configuration-language.service';
 import { AccountService } from '../../services/handlers/account.service';
-import { Account } from 'src/app/entities/account';
-import { AppDataService } from 'src/app/services/app-data.service';
+import { Account } from '../../entities/account';
+import { AppDataService } from '../../services/app-data.service';
 
 @Component({
   selector: 'app-configuration',

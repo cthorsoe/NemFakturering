@@ -3,7 +3,7 @@ import { Customer } from '../../entities/customer';
 import { AppDataService } from '../app-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/enviroments';
+import { environment } from '../../environments/environments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class CustomerService {
       }
    }
    requestCustomers(accountId:number) : Observable<Customer[]>{
-      var observ = this.http.get<Customer[]>(this.apiUrl + 'customers/list/' + accountId);
+      var observ = this.http.get<Customer[]>(this.apiUrl + 'customers/list/' + accountId, {withCredentials: true});
       return observ;
    }
 

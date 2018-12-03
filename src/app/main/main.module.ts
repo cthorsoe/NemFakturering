@@ -13,11 +13,11 @@ import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MainRoutingModule,
-    FontAwesomeModule,
-    ChartModule,
+      CommonModule,
+      ReactiveFormsModule,
+      MainRoutingModule,
+      FontAwesomeModule,
+      ChartModule,
   ],
   declarations: [MainComponent, MainHomeComponent, InvoiceComponent, InvoiceListComponent, CustomersComponent, ConfigurationComponent],
   providers: [TitleCasePipe]

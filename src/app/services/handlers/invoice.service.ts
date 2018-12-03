@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AppDataService } from '../app-data.service';
-import { environment } from '../../environments/enviroments';
-import { HttpClient } from 'node_modules/@angular/common/http';
+import { environment } from '../../environments/environments';
+import { HttpClient } from '@angular/common/http';
 import { Invoice } from '../../entities/invoice';
-import { Observable } from 'node_modules/rxjs';
-import { Item } from 'src/app/entities/item';
+import { Observable } from 'rxjs';
+import { Item } from '../../entities/item';
 import * as moment from 'moment'
 import * as jsPDF from 'jspdf'
 import 'jspdf-autotable';

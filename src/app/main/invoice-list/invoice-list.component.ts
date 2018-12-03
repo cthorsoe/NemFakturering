@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Invoice } from 'src/app/entities/invoice';
-import { Customer } from 'src/app/entities/customer';
+import { Invoice } from '../../entities/invoice';
+import { Customer } from '../../entities/customer';
 import { InvoiceService } from '../../services/handlers/invoice.service';
 import { AppDataService } from '../../services/app-data.service';
 import { InvoicesLanguageService } from '../../languages/invoices/invoices-language.service';
 import { faFileDownload, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormBuilder } from 'node_modules/@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { CustomerService } from '../../services/handlers/customer.service';
 
 @Component({

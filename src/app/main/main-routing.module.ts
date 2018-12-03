@@ -9,7 +9,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { AuthLoginGuardService } from '../services/auth-login-guard.service';
 
 const routes: Routes = [
-    { path: '', component: MainComponent, canActivate:[AuthLoginGuardService],
+    { path: '', component: MainComponent,
       children: [
          { path: '', redirectTo:'/app/dashboard', pathMatch: 'full' },
          { path: 'dashboard', component: MainHomeComponent},
