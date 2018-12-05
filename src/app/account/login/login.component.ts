@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
    loginFormSubmit(loginForm:FormGroup, event:Event){
       console.log('SUBMITTING ACCOUNT')
       this.authService.login(loginForm.value);
-      this.router.navigate([this.authService.redirectUrl != undefined ? this.authService.redirectUrl : '/app']);
+      // this.router.navigate([this.authService.redirectUrl != undefined ? this.authService.redirectUrl : '/app']);
    }
 
    getCookie(cname) {

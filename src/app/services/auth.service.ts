@@ -29,13 +29,16 @@ export class AuthService {
       };
       
       var observ = this.http.post<any>(this.apiUrl + 'accounts/login/', form, {responseType:'json', withCredentials:true});
-         // this.dataService.customersObserv = observ;
       observ.subscribe((response) => {
-         this.isLoggedIn = true;
-         this.accountService.setAccount(response);
+         if(response && response.status){
+            this.isLoggedIn = false;
+         }else{
+            this.isLoggedIn = true;
+            this.accountService.setAccount(response, this.redirectUrl);
+         }
       }, error => {
          this.isLoggedIn = false;
-         this.accountService.setAccount(undefined);
+         this.accountService.setAccount(undefined, this.redirectUrl);
       });
    }
 
@@ -46,44 +49,53 @@ export class AuthService {
       this.router.navigate(['/']);
    }
 
-   getCookie(cname) {
-      var name = cname + "=";
-      var ca = document.cookie.split(';');
-      for(var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
-          }
-      }
-      return "";
+   testCookie(): void {
+      var observ = this.http.get(this.apiUrl + 'testcookie', {withCredentials:true});
+      observ.subscribe((response:any) => {
+         console.log('RESPONSE', response)
+      });
    }
 
-   authUser(){
-      var observ = this.http.get<number>(this.apiUrl + 'accounts/auth/', {responseType: 'json', withCredentials: true});
-      observ.subscribe((accountId:number) => {
-         console.log('TEST AUTH RES', accountId)
-         if(accountId != undefined){
-            if(this.appService.account){
-               this.isLoggedIn = true;
-               this.accountService.setAccount(this.appService.account);
-            }else{
-               var observ = this.accountService.requestAccount(accountId)
-               observ.subscribe((response) => {
-                  this.isLoggedIn = true;
-                  this.accountService.setAccount(response);
-               }, error => {
-                  this.isLoggedIn = false;
-                  this.accountService.setAccount(undefined);
-               });
-            }
-            
+   tryLogin(): void {
+      var observ = this.http.get<Account>(this.apiUrl + 'accounts/auth', { withCredentials:true });
+      observ.subscribe((account:Account) => {
+         if(account){
+            this.isLoggedIn = true;
+            this.accountService.setAccount(account, this.redirectUrl);
          }else{
             this.isLoggedIn = false;
             this.accountService.setAccount(undefined);
          }
+      }, error => {
+         this.isLoggedIn = false;
+         this.accountService.setAccount(undefined);
       });
+   }
+
+
+   authUser(){
+      // var observ = this.http.get<number>(this.apiUrl + 'accounts/auth/', {responseType: 'json', withCredentials: true});
+      // observ.subscribe((accountId:number) => {
+      //    console.log('TEST AUTH RES', accountId)
+      //    if(accountId != undefined){
+      //       if(this.appService.account){
+      //          this.isLoggedIn = true;
+      //          this.accountService.setAccount(this.appService.account);
+      //       }else{
+      //          var observ = this.accountService.requestAccount(accountId)
+      //          observ.subscribe((response) => {
+      //             this.isLoggedIn = true;
+      //             this.accountService.setAccount(response);
+      //          }, error => {
+      //             this.isLoggedIn = false;
+      //             this.accountService.setAccount(undefined);
+      //          });
+      //       }
+            
+      //    }else{
+      //       this.isLoggedIn = false;
+      //       this.accountService.setAccount(undefined);
+      //    }
+      // });
    }
 }

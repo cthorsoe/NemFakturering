@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 /* SERVICES */
 import { AuthService } from './services/auth.service';
 import { AuthLoginGuardService } from './services/auth-login-guard.service';
@@ -16,6 +17,7 @@ import { AccountComponent } from './account/account/account.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LogoutComponent } from './account/logout/logout.component';
+import { TryLoginComponent } from './account/try-login/try-login.component';
 /* GUEST COMPONENTS  */
 import { GuestComponent } from './guest/guest/guest.component';
 import { GuestHomeComponent } from './guest/guest-home/guest-home.component';
@@ -34,12 +36,14 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
       LoginComponent,
       RegisterComponent,
       LogoutComponent,
+      TryLoginComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       ReactiveFormsModule,
       HttpClientModule,
+      FontAwesomeModule
    ],
    providers: [AuthService, AuthLoginGuardService, AuthAdminGuardService, AppDataService, CookieService],
    bootstrap: [AppComponent]

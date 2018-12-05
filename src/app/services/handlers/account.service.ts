@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Account } from '../../entities/account';
 import { environment } from '../../environments/environments';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,18 @@ export class AccountService {
    constructor(private dataService:AppDataService, private router:Router, private http:HttpClient) {
    }
 
-   setAccount(account:Account){
-      if(account != undefined){
-         this.router.navigate(['app'])
+   setAccount(account:Account, redirectUrl:string = undefined){
+      console.log('SETTING ACCOUNT', redirectUrl, account )
+      if(account == undefined){
+         this.router.navigate(['account/login'])
+      }else{
+         if(this.dataService.account == undefined){
+            console.log('REDIRECTING', (redirectUrl != undefined ? redirectUrl : 'app'))
+            this.router.navigate([(redirectUrl != undefined ? redirectUrl : 'app')])
+         }
+         this.dataService.account = account;
+         this.dataService.accountSubject.next(account);
       }
-      this.dataService.account = account;
-      this.dataService.accountSubject.next(account);
    }
    
    requestAccount(accountId:number) : Observable<Account>{
@@ -30,6 +37,12 @@ export class AccountService {
 
    getAccount(){
       return this.dataService.account as Account;
+   }
+
+   triggerAccountSubject(){
+      if(this.dataService.account != undefined){
+         this.dataService.accountSubject.next(this.dataService.account);
+      }
    }
 
    createAccount(registerData){

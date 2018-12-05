@@ -8,6 +8,7 @@ import { PricingComponent } from './guest/pricing/pricing.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { LogoutComponent } from './account/logout/logout.component';
+import { TryLoginComponent } from './account/try-login/try-login.component';
 
 const routes: Routes = [
    {
@@ -24,6 +25,7 @@ const routes: Routes = [
          { path: 'login', component: LoginComponent},
          { path: 'register', component: RegisterComponent},
          { path: 'logout', component: LogoutComponent},
+         { path: 'try-login', component: TryLoginComponent},
       ]   
    },
    { path: '', component: GuestComponent,

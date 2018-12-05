@@ -28,21 +28,15 @@ export class MainComponent implements OnInit {
 
    ngOnInit() {
       console.log('MAIN INIT')
-      this.authService.authUser();
-      // var account = this.accountService.getAccount();
-      // if(account == undefined){
-      //    // this.router.navigate(['account/login'])
-      // }else{
-      //    this.account = account;
-         
-      // }
+      // this.authService.authUser();
       this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
-         console.log('VIEW SUBSCRIBE TRIGGER', account);
+         console.log('HOME VIEW SUBSCRIBE TRIGGER', account);
          this.account = account;
          if(account == undefined){
             this.router.navigate(['account/login'])
          }
       });
+      this.accountService.triggerAccountSubject();
       this.isAdmin = this.authService.isAdmin;
       this.strings = this.mainLangService;
       console.log('LOGGED IN IS', this.isAdmin)

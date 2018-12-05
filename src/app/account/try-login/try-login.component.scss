@@ -1,0 +1,13 @@
+.spinning-icon{
+   font-size: 4em;
+   animation-name: spinner;
+   animation-duration: .75s;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+
+/* The animation code */
+@keyframes spinner {
+   from {transform: rotate(0deg)}
+   to {transform: rotate(360deg)}
+}
