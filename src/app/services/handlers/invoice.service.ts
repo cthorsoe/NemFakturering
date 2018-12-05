@@ -20,7 +20,7 @@ export class InvoiceService {
 
    setInvoices(){
       if(this.dataService.invoices == undefined){
-         var observ = this.requestInvoice(6 /*this.dataService.account.id*/)
+         var observ = this.requestInvoice(this.dataService.account.id)
          observ.subscribe((invoices: Invoice[]) => {
             this.dataService.invoices = invoices;
             this.dataService.invoicesSubject.next(invoices);

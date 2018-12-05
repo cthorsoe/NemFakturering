@@ -6,17 +6,17 @@ import { LanguageService } from '../../services/language.service';
   providedIn: 'root'
 })
 export class MainLanguageService {
-   title:LanguageString = new LanguageString();
-   home:LanguageString = new LanguageString();
-   invoices:LanguageString = new LanguageString();
-   customers:LanguageString = new LanguageString();
-   configuration:LanguageString = new LanguageString();
+   title:LanguageString = new LanguageString('Easy Invoicing', 'Nem Fakturering');
+   home:LanguageString = new LanguageString('Home', 'Hjem');
+   invoices:LanguageString = new LanguageString('Invoices', 'Fakturaer');
+   customers:LanguageString = new LanguageString('Customers', 'Kunder');
+   configuration:LanguageString = new LanguageString('Configuration', 'Opsætning');
 
    constructor(private langService:LanguageService) {
-      langService.setLangObj(this.title, 'Easy Invoicing', 'Nem Fakturering');
-      langService.setLangObj(this.home, 'Home', 'Hjem');
-      langService.setLangObj(this.invoices, 'Invoices', 'Fakturaer');
-      langService.setLangObj(this.customers, 'Customers', 'Kunder');
-      langService.setLangObj(this.configuration, 'Configuration', 'Opsætning');
+      // langService.setLangObj(this.title, 'Easy Invoicing', 'Nem Fakturering');
+      // langService.setLangObj(this.home, 'Home', 'Hjem');
+      // langService.setLangObj(this.invoices, 'Invoices', 'Fakturaer');
+      // langService.setLangObj(this.customers, 'Customers', 'Kunder');
+      // langService.setLangObj(this.configuration, 'Configuration', 'Opsætning');
    }
 }

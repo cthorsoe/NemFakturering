@@ -6,7 +6,7 @@ import { MainLanguageService } from '../../languages/main/main-language.service'
 import { AccountService } from '../../services/handlers/account.service';
 import { AppDataService } from '../../services/app-data.service';
 import { Account } from '../../entities/account';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -50,8 +50,13 @@ export class MainComponent implements OnInit {
 
    changeLang(lang:string){
       console.log('CHANGING LANG TO ', lang)
+      /* if(this.appService.currentLang != lang){
+         this.appService.currentLang = lang;
+      } */
       if(this.mainLangService['langService'].currentLang != lang){
-         this.mainLangService['langService'].currentLang = lang;
+         this.mainLangService['langService'].switchLanguage(lang);
+         // this.mainLangService['langService'].currentLang = lang;
+         // localStorage.setItem('currentLang', lang);
       }
    }
 

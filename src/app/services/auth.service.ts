@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountService } from './handlers/account.service';
 import { environment } from '../environments/environments';
 import { Account } from '../entities/account';
+import { AppDataService } from './app-data.service';
 
 @Injectable()
 
@@ -12,7 +13,7 @@ export class AuthService {
    isLoggedIn:boolean = false;
    isAdmin:boolean = false;
    redirectUrl:string;
-   constructor(private router:Router, private accountService:AccountService, private http:HttpClient) { }
+   constructor(private router:Router, private accountService:AccountService,  private appService:AppDataService, private http:HttpClient) { }
 
    // exlogin(isAdmin:boolean): void {
    //    console.log('LOGGING IN');
@@ -41,7 +42,7 @@ export class AuthService {
    logout(): void{
       this.isLoggedIn = false;
       this.isAdmin = false;
-      this.accountService.setAccount(undefined);
+      this.appService.resetAppData();
       this.router.navigate(['/']);
    }
 
@@ -65,14 +66,20 @@ export class AuthService {
       observ.subscribe((accountId:number) => {
          console.log('TEST AUTH RES', accountId)
          if(accountId != undefined){
-            var observ = this.accountService.requestAccount(accountId)
-            observ.subscribe((response) => {
+            if(this.appService.account){
                this.isLoggedIn = true;
-               this.accountService.setAccount(response);
-            }, error => {
-               this.isLoggedIn = false;
-               this.accountService.setAccount(undefined);
-            });
+               this.accountService.setAccount(this.appService.account);
+            }else{
+               var observ = this.accountService.requestAccount(accountId)
+               observ.subscribe((response) => {
+                  this.isLoggedIn = true;
+                  this.accountService.setAccount(response);
+               }, error => {
+                  this.isLoggedIn = false;
+                  this.accountService.setAccount(undefined);
+               });
+            }
+            
          }else{
             this.isLoggedIn = false;
             this.accountService.setAccount(undefined);

@@ -25,14 +25,15 @@ export class AppDataService {
    invoices:Invoice[];
    invoicesSubject:Subject<Invoice[]> = new Subject<Invoice[]>();
 
-   currentLang:string = 'da';
+   currentLang:string = localStorage.getItem('currentLang');
 
    constructor() { 
    }
 
-   setLang(lang:string){
-      this.currentLang = lang;
+   resetAppData(){
+      this.account = undefined;
+      this.customers = undefined;
+      this.items = undefined;
+      this.invoices = undefined;
    }
-
-
 }

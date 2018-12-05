@@ -1,3 +1,52 @@
-<p>
-  register works!
-</p>
+<div class="row justify-content-center">
+   <div class="col col-md-6 col-lg-4">
+      <div class="card mt-5">
+         <div class="card-header">
+            <h1 class="h3 m-0 font-weight-normal text-center">Registrer</h1>
+         </div>
+         <div class="card-body">
+            <form class="form-signin" id="frmRegister" [formGroup]="registerForm" (submit)="registerFormSubmit(registerForm, $event)" novalidate>
+               <label for="txtRegisterEmail" class="sr-only">E-mail</label>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.touched">
+                  Du skal udfylde en email adresse
+               </div>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.email.errors?.email && registerForm.controls.email.touched">
+                  Den indtastede email adresse er ikke korrekt. Tjek venligst igen.
+               </div>
+               <input type="text" id="txtRegisterEmail" formControlName="email" class="form-control mb-2" placeholder="E-mail adresse" autofocus="">
+
+               <label for="txtRegisterUserName" class="sr-only">User name</label>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.username.errors?.required && registerForm.controls.username.touched">
+                  Du skal udfylde et brugernavn
+               </div>
+               <input type="text" id="txtRegisterUserName" formControlName="username" class="form-control mb-2" placeholder="User name" autofocus="">
+
+               <label for="txtRegisterName" class="sr-only">Name</label>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.name.errors?.required && registerForm.controls.name.touched">
+                  Du skal udfylde et navn (Firmanavn eller personligt navn)
+               </div>
+               <input type="text" id="txtRegisterName" formControlName="name" class="form-control mb-2" placeholder="Name" autofocus="">
+               
+               <label for="txtRegisterPassword" class="sr-only">Password</label>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.touched">
+                  Du skal udfylde et password
+               </div>
+               <div class="alert text-center alert-danger my-0" role="alert" *ngIf="registerForm.errors?.notMatching && registerForm.controls.password.touched && registerForm.controls.passwordConfirm.touched">
+                     Not matching
+               </div>
+               <input type="password" id="txtRegisterPassword" formControlName="password" class="form-control mb-2" placeholder="Password">
+
+               <label for="txtRegisterPasswordConfirm" class="sr-only">Bekræft password</label>
+               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="registerForm.controls.passwordConfirm.errors?.required && registerForm.controls.passwordConfirm.touched">
+                  Indtast venligst dit password igen
+               </div>
+               <input type="password" id="txtRegisterPasswordConfirm" formControlName="passwordConfirm" class="form-control mb-2" placeholder="Password igen">
+      
+               <button id="btnRegister" class="btn btn-lg btn-primary btn-block mb-2" type="submit" [disabled]="registerForm.invalid">Sign In</button>
+               <p>Har du allerede en konto? <a routerLink="../login">Log ind her.</a></p>
+            </form>
+         </div>
+      </div>
+      
+   </div>
+</div>

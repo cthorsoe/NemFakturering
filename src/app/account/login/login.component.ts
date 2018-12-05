@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { AppDataService } from 'src/app/services/app-data.service';
-import { AccountService } from 'src/app/services/handlers/account.service';
+import { AppDataService } from '../../services/app-data.service';
+import { AccountService } from '../../services/handlers/account.service';
 import { Account } from '../../entities/account';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 

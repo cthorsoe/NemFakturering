@@ -17,7 +17,7 @@ export class CustomerService {
 
    setCustomers(){
       if(this.dataService.customers == undefined){
-         var observ = this.requestCustomers(6 /*this.dataService.account.id*/)
+         var observ = this.requestCustomers(this.dataService.account.id)
          observ.subscribe((customers: Customer[]) => {
             this.dataService.customers = customers;
             this.dataService.customersSubject.next(customers);

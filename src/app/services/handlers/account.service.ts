@@ -31,4 +31,23 @@ export class AccountService {
    getAccount(){
       return this.dataService.account as Account;
    }
+
+   createAccount(registerData){
+      let account = new Account(registerData);
+      account['password'] = registerData.password
+      console.log('account', account)
+      var observ = this.http.post<Account>(this.apiUrl + 'accounts/create/', account, { responseType:"json" });
+      observ.subscribe((response:any) => {
+         switch (response.status) {
+            case 'SUCCESS':
+               console.log('ACCOUNT SUCCESSFULLY CREATED')
+               break;
+            case 'TAKEN':
+               break;
+            case 'ERROR':
+            default:
+               break;
+         }
+      });
+   }
 }

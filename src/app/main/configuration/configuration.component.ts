@@ -15,10 +15,12 @@ export class ConfigurationComponent implements OnInit {
    configurationForm: FormGroup;
    strings:ConfigurationLanguageService
    account:Account;
+   lang:String;
    subscription;
    constructor(private fb:FormBuilder, private accountService:AccountService, private appService:AppDataService, private configurationLangService:ConfigurationLanguageService) { }
 
    ngOnInit() {
+      this.lang = this.appService.currentLang;
       this.strings = this.configurationLangService;
       console.log(this.appService);
       this.account = this.appService.account;
@@ -30,11 +32,16 @@ export class ConfigurationComponent implements OnInit {
          this.createForm();
       });
       // this.accountService.setAccount();
-      console.log(this.strings);
+      console.log('STRINGS', this.strings);
    }
    createForm(){
       if(this.account != undefined){
          this.configurationForm = this.fb.group({
+            phone: [this.account.phone],
+            cvr: [this.account.cvr],
+            street: [this.account.street],
+            zipcode: [this.account.zipcode],
+            city: [this.account.city, Validators.required],
             startvalue: [this.account.configuration.invoicenumberstartvalue, Validators.required],
             prefix: [this.account.configuration.invoicenumberprefix],
             minlength: [this.account.configuration.invoicenumberminlength, Validators.required],

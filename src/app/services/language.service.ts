@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LanguageService {
-   currentLang:string = 'da';
+   currentLang:string = localStorage.getItem('currentLang');
+   // setLangObj(property:LanguageString, en:string, da:string){
+   //    property.en = en;
+   //    property.da = da;
+   // }
 
-   constructor() {
-      
-   }
-   
-   setLangObj(property:LanguageString, en:string, da:string){
-      property.en = en;
-      property.da = da;
+   switchLanguage(lang){
+      this.currentLang = lang;
+      localStorage.setItem('currentLang', lang);
    }
 }
 

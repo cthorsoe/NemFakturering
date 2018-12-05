@@ -21,7 +21,7 @@ import { GuestComponent } from './guest/guest/guest.component';
 import { GuestHomeComponent } from './guest/guest-home/guest-home.component';
 import { TheProductComponent } from './guest/the-product/the-product.component';
 import { PricingComponent } from './guest/pricing/pricing.component';
-import { CookieService } from '../../node_modules/angular2-cookie/services/cookies.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
    declarations: [

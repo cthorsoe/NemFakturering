@@ -14,7 +14,7 @@ export class ItemService {
 
    setItems(){
       if(this.dataService.items == undefined){
-         var observ = this.requestItems(6 /*this.dataService.account.id*/)
+         var observ = this.requestItems(this.dataService.account.id)
          observ.subscribe((items: Item[]) => {
             this.dataService.items = items;
             this.dataService.itemsSubject.next(items);

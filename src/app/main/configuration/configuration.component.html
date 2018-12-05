@@ -8,10 +8,46 @@
          </div>
       </div>
       <div class="card-body">
-         <form id="frmUpdateConfiguration" [formGroup]="configurationForm" (submit)="configurationForm(configurationForm, $event)" novalidate>
+         <form id="frmUpdateConfiguration" [formGroup]="configurationForm" (submit)="configurationFormSubmit(configurationForm, $event)" novalidate>
             <div class="row">
                <div class="col">
-                  <h5>Faktura</h5>
+                  <h5>{{ strings.accountInformation[strings.langService.currentLang] }}</h5>
+                  <hr>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtPhone">{{ strings.phone[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtPhone" formControlName="phone" class="form-control mb-2" placeholder="{{ strings.phone[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtCVR">{{ strings.cvr[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtCVR" formControlName="cvr" class="form-control mb-2" placeholder="{{ strings.cvr[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtStreet">{{ strings.street[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtStreet" formControlName="street" class="form-control mb-2" placeholder="{{ strings.street[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtZipcode">{{ strings.zipcode[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtZipcode" formControlName="zipcode" class="form-control mb-2" placeholder="{{ strings.zipcode[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtCity">{{ strings.city[strings.langService.currentLang] }}</label>
+                  <input type="text" id="txtCity" formControlName="city" class="form-control mb-2" placeholder="{{ strings.city[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <h5 class="mt-5">Faktura</h5>
                   <hr>
                </div>
             </div>
