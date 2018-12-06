@@ -1,0 +1,74 @@
+<div class="card">
+      <div class="card-header fill">
+         <div class="row">
+            <div class="col">
+               <h3>{{ strings.yourItems[strings.langService.currentLang] }}</h3>
+               <p class="text-muted mb-0">{{ strings.yourItemsDescription[strings.langService.currentLang] }}</p>
+            </div>
+            <div class="col-auto">
+               <button (click)="showItemModal()" type="button" class="btn btn-primary">{{ strings.createNew[strings.langService.currentLang] }}</button>
+            </div>
+         </div>
+      </div>
+      <div class="card-body fluid fluid-top">
+         <table id="tblItemList" class="table table-striped">
+            <thead>
+               <tr>
+                  <th>#</th>
+                  <th>{{ strings.name[strings.langService.currentLang] }}</th>
+                  <th>{{ strings.price[strings.langService.currentLang] }}</th>
+                  <th>{{ strings.edit[strings.langService.currentLang] }}</th>
+                  <th>{{ strings.delete[strings.langService.currentLang] }}</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let item of items">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td (click)="showItemModal(item, $event)" class="icon-td"><a><fa-icon [icon]="faEdit"></fa-icon></a></td>
+                  <td (click)="deleteItem(item.id)" class="icon-td"><a><fa-icon [icon]="faTimes"></fa-icon></a></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   
+   <div id="itemModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+         
+         <form id="frmEditItem" [formGroup]="itemForm" (submit)="itemFormSubmit(itemForm, $event)" novalidate>
+            <div class="modal-content">
+               <div class="modal-header">
+               <h5 class="modal-title">{{ editItem == null ? strings.create[strings.langService.currentLang] : strings.edit[strings.langService.currentLang] }} {{ strings.item[strings.langService.currentLang] | lowercase }}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+               </div>
+               <div class="modal-body">
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtItemName">{{ strings.name[strings.langService.currentLang] }}</label>
+                        <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="itemForm.controls.name.errors?.required && itemForm.controls.name.touched">
+                           {{ strings.youHaveToFillAnItemName[strings.langService.currentLang] }}
+                        </div>
+                        <input type="text" id="txtItemName" formControlName="name" class="form-control mb-2" placeholder="{{ strings.name[strings.langService.currentLang] }}">
+                     </div>
+                     <div class="w-100"></div>
+                     <div class="col">
+                        <label for="txtItemPrice">{{ strings.price[strings.langService.currentLang] }}</label>
+                        <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="itemForm.controls.defaultprice.errors?.required && itemForm.controls.defaultprice.touched">
+                           {{ strings.youHaveToFillAnItemPrice[strings.langService.currentLang] }}
+                        </div>
+                        <input type="number" id="txtItemPrice" formControlName="defaultprice" class="form-control mb-2" placeholder="{{ strings.price[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ strings.close[strings.langService.currentLang] }}</button>
+                  <button type="submit" class="btn btn-primary">{{ editItem == null ? strings.create[strings.langService.currentLang] : strings.saveChanges[strings.langService.currentLang] }}</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>

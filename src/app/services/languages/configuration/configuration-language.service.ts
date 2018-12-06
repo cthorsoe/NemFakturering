@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LanguageString } from '../../entities/language-string';
-import { LanguageService } from '../../services/language.service';
+import { LanguageString } from '../../../entities/language-string';
+import { LanguageService } from '../../language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,9 @@ export class ConfigurationLanguageService {
    invoiceNumberStartValue:LanguageString = new LanguageString('Invoice number start value', 'Faktura nr. start værdi');
    invoiceNumberPrefix:LanguageString = new LanguageString('Invoice number prefix', 'Faktura nr. præfiks');
    invoiceNumberMinLength:LanguageString = new LanguageString('Invoice number minimum length', 'Faktura nr. minimum længde');
+   useTaxes:LanguageString = new LanguageString('Use taxes', 'Inkluder moms');
+   taxPercentage:LanguageString = new LanguageString('Tax percentage', 'Moms procent');
+   itemPricesIncludeTaxes:LanguageString = new LanguageString('Item prices include taxes', 'Varernes priser er inkl. moms');
    bankName:LanguageString = new LanguageString('Bank name', 'Bank navn');
    bankRegNumber:LanguageString = new LanguageString('Bank registration number', 'Bank registrerings nummer');
    bankAccountNumber:LanguageString = new LanguageString('Bank account number', 'Bank konto number');

@@ -70,6 +70,33 @@
                </div>
             </div>
             <div class="row">
+               <div class="col">
+                  
+                  <div class="custom-control custom-checkbox">
+                     <input type="checkbox" class="custom-control-input" id="cbUseTaxes" formControlName="usetaxes">
+                     <label class="custom-control-label" for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
+                  </div>
+                  <!-- <label for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
+                  <input type="checkbox" id="cbUseTaxes" formControlName="usetaxes" > -->
+                  <!-- <input type="text" id="txtInvoiceNumberStartValue" formControlName="startvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}" autofocus=""> -->
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <label for="txtTaxPercentage">{{ strings.taxPercentage[strings.langService.currentLang] }}</label>
+                  <input type="number" id="txtTaxPercentage" formControlName="taxpercentage" class="form-control mb-2" placeholder="{{ strings.taxPercentage[strings.langService.currentLang] }}" autofocus="">
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <div class="custom-control custom-checkbox">
+                     <input type="checkbox" class="custom-control-input" id="cbItemPricesIncludeTaxes" formControlName="itempricesincludetaxes">
+                     <label class="custom-control-label" for="cbItemPricesIncludeTaxes">{{ strings.itemPricesIncludeTaxes[strings.langService.currentLang] }}</label>
+                  </div>
+                  
+               </div>
+            </div>
+            <div class="row">
                   <div class="col">
                      <h5 class="mt-5">Bank information</h5>
                      <hr>

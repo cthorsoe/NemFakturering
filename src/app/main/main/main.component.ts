@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faReceipt, faCog, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faReceipt, faCog, faCogs, faInfoCircle, /* faCubes, */ faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
 import { AuthService } from '../../services/auth.service';
-import { MainLanguageService } from '../../languages/main/main-language.service';
+import { MainLanguageService } from '../../services/languages/main/main-language.service';
 import { AccountService } from '../../services/handlers/account.service';
 import { AppDataService } from '../../services/app-data.service';
 import { Account } from '../../entities/account';
@@ -21,6 +21,9 @@ export class MainComponent implements OnInit {
    faAddressBook = faAddressBook;
    faCog = faCog;
    faCogs = faCogs;
+   // faCubes = faCubes;
+   faShoppingCart = faShoppingCart;
+   faInfoCircle = faInfoCircle;
    subscription;
 
    
@@ -30,7 +33,7 @@ export class MainComponent implements OnInit {
       console.log('MAIN INIT')
       // this.authService.authUser();
       this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
-         console.log('HOME VIEW SUBSCRIBE TRIGGER', account);
+         console.log('HOME VIEW SUBSCRIBE TRIGGER', account, account.configuration);
          this.account = account;
          if(account == undefined){
             this.router.navigate(['account/login'])

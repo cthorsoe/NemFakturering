@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $primaryColor:#008cba;
 $sidebarWidth:250px;
+$customCheckboxOffset:1.703125rem;
 
 main {
   .carousel-caption {
@@ -34,11 +35,14 @@ main {
 .wrapper{
    display: flex;
    .sidebar{
-      background:$primaryColor;
+      height: 100vh;
       flex-basis: $sidebarWidth;
       min-width: $sidebarWidth;
       .sidebar-wrapper{
+         background:$primaryColor;
          height: 100vh;
+         width:$sidebarWidth;
+         position: fixed;
          display: flex;
          flex-direction: column;
          .simple-text, .nav-link{
@@ -164,4 +168,34 @@ a:not([href]):not([tabindex]){
    top:0;
    left:0;
    z-index: 1001;
+}
+
+.custom-control{
+   &.custom-checkbox{
+      padding-left: 0;
+      margin-bottom:$customCheckboxOffset;
+      .custom-control-input{
+         transform: translateY($customCheckboxOffset);
+      }
+      .custom-control-label{
+         &::before, &::after{
+            left:0;
+            top:$customCheckboxOffset;
+         }
+      }
+   }
+}
+
+.spinning-icon{
+   font-size: 4em;
+   animation-name: spinner;
+   animation-duration: .75s;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+
+/* The animation code */
+@keyframes spinner {
+   from {transform: rotate(0deg)}
+   to {transform: rotate(360deg)}
 }

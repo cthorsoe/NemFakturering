@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeLanguageService } from 'src/app/services/languages/home/home-language.service';
 
 @Component({
   selector: 'app-guest-home',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestHomeComponent implements OnInit {
 
-  constructor() { }
+   strings:HomeLanguageService;
+   constructor(private homeLangService:HomeLanguageService) {
+      this.strings = homeLangService;
+   }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
 
 }

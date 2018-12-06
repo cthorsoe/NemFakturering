@@ -1,3 +1,54 @@
-<p>
-  pricing works!
-</p>
+<div class="container">
+   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">{{ strings.pricing[strings.langService.currentLang] }}</h1>
+      <p class="lead">{{ strings.pricingLead[strings.langService.currentLang] }}</p>
+   </div>
+   
+   <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 shadow-sm">
+         <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ strings.trial[strings.langService.currentLang] }}</h4>
+         </div>
+         <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ strings.free[strings.langService.currentLang] }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+               <li>{{ strings.trialLine1[strings.langService.currentLang] }}</li>
+               <li>{{ strings.trialLine2[strings.langService.currentLang] }}</li>
+               <li>{{ strings.trialLine3[strings.langService.currentLang] }}</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">{{ strings.activate[strings.langService.currentLang] }}</button>
+         </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+         <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ strings.subscription[strings.langService.currentLang] }}</h4>
+         </div>
+         <div class="card-body">
+            <h1 class="card-title pricing-card-title">75 DKR<small class="text-muted"> / {{ strings.mo[strings.langService.currentLang] }}</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+               <li>{{ strings.subscriptionLine1[strings.langService.currentLang] }}</li>
+               <li>{{ strings.subscriptionLine2[strings.langService.currentLang] }}</li>
+               <li>{{ strings.subscriptionLine3[strings.langService.currentLang] }}</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">{{ strings.createSubscription[strings.langService.currentLang] }}</button>
+         </div>
+      </div>
+      <div class="card mb-4 shadow-sm">
+         <div class="card-header">
+         <h4 class="my-0 font-weight-normal">{{ strings.twentyJourneyTicket[strings.langService.currentLang] }}</h4>
+         </div>
+         <div class="card-body">
+            <h1 class="card-title pricing-card-title">150 DKR</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+               <li>{{ strings.twentyJourneyTicketLine1[strings.langService.currentLang] }}</li>
+               <li>{{ strings.twentyJourneyTicketLine2[strings.langService.currentLang] }}</li>
+               <li>{{ strings.twentyJourneyTicketLine3[strings.langService.currentLang] }}</li>
+               <!-- <li>Help center access</li> -->
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">{{ strings.buyTwentyJourneyTicket[strings.langService.currentLang] }}</button>
+         </div>
+      </div>
+      
+    
+  </div>
+</div>

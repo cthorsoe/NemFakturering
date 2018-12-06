@@ -5,4 +5,7 @@ export class AccountConfiguration {
    public bankname:string;
    public bankregnumber:number;
    public bankaccountnumber:number;
+   public usetaxes:boolean;
+   public taxpercentage:number;
+   public itempricesincludetaxes:boolean;
 }

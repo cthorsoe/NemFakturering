@@ -3,7 +3,7 @@ import { Invoice } from '../../entities/invoice';
 import { Customer } from '../../entities/customer';
 import { InvoiceService } from '../../services/handlers/invoice.service';
 import { AppDataService } from '../../services/app-data.service';
-import { InvoicesLanguageService } from '../../languages/invoices/invoices-language.service';
+import { InvoicesLanguageService } from '../../services/languages/invoices/invoices-language.service';
 import { faFileDownload, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CustomerService } from '../../services/handlers/customer.service';

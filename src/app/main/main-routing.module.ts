@@ -7,6 +7,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { AuthLoginGuardService } from '../services/auth-login-guard.service';
+import { ItemsComponent } from './items/items.component';
 
 const routes: Routes = [
     { path: '', component: MainComponent, canActivate:[AuthLoginGuardService],
@@ -16,6 +17,7 @@ const routes: Routes = [
          { path: 'invoice', component: InvoiceComponent},
          { path: 'invoice/list', component: InvoiceListComponent},
          { path: 'customers', component: CustomersComponent},
+         { path: 'items', component: ItemsComponent },
          { path: 'configuration', component: ConfigurationComponent},
       ],
     },

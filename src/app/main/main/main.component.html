@@ -24,9 +24,21 @@
                </a>
             </li>
             <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./items">
+                  <fa-icon [icon]="faShoppingCart"></fa-icon>
+                  <p>{{ strings.items[strings.langService.currentLang] }}</p>
+               </a>
+            </li>
+            <li>
                <a class="nav-link" routerLinkActive="active" routerLink="./configuration">
                   <fa-icon [icon]="faCog"></fa-icon>
                   <p>{{ strings.configuration[strings.langService.currentLang] }}</p>
+               </a>
+            </li>
+            <li>
+               <a class="nav-link" routerLink="/">
+                  <fa-icon [icon]="faInfoCircle"></fa-icon>
+                  <p>{{ strings.information[strings.langService.currentLang] }}</p>
                </a>
             </li>
             <li *ngIf="isAdmin" class="position-bottom">

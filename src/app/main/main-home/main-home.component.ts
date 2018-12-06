@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from '../../entities/chart';
-import { DashboardLanguageService } from '../../languages/dashboard/dashboard-language.service';
-import { MonthsLanguageService } from '../../languages/months/months-language.service';
+import { DashboardLanguageService } from '../../services/languages/dashboard/dashboard-language.service';
+import { MonthsLanguageService } from '../../services/languages/months/months-language.service';
 import { TitleCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
@@ -13,16 +13,16 @@ import { Observable } from 'rxjs';
 export class MainHomeComponent implements OnInit {
    monthlyInvoicesChart: Chart = undefined;
    strings:DashboardLanguageService;
-   private _currentLang = '';
+   currentLang = '';
    subscription;
    
-   @Input('currentLang')
-   set currentLang(currentLang: string) {
-      this._currentLang = currentLang;
-      this.createMonthlyInvoicesChartChart();
-   }
+   // @Input('currentLang')
+   // set currentLang(currentLang: string) {
+   //    this._currentLang = currentLang;
+   //    this.createMonthlyInvoicesChartChart();
+   // }
 
-   get currentLang(): string { return this._currentLang; }
+   // get currentLang(): string { return this._currentLang; }
    
 
    constructor(private dashboardLangService:DashboardLanguageService, private monthsLangService:MonthsLanguageService, private titleCasePipe: TitleCasePipe) {
@@ -30,8 +30,9 @@ export class MainHomeComponent implements OnInit {
       this.currentLang = dashboardLangService['langService'].currentLang;
       console.log('monthsLangService', monthsLangService)
    }
-
+   
    ngOnInit() {
+      this.createMonthlyInvoicesChartChart();
    }
 
    createMonthlyInvoicesChartChart(){

@@ -5,7 +5,7 @@ import { Item } from '../../entities/item';
 import { InvoiceService } from '../../services/handlers/invoice.service';
 import { CustomerService } from '../../services/handlers/customer.service';
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl, AbstractControl } from '@angular/forms';
-import { InvoicesLanguageService } from '../../languages/invoices/invoices-language.service';
+import { InvoicesLanguageService } from '../../services/languages/invoices/invoices-language.service';
 import { AppDataService } from '../../services/app-data.service';
 import { ItemService } from '../../services/handlers/item.service';
 import * as jsPDF from 'jspdf'

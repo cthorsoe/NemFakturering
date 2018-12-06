@@ -60,31 +60,31 @@
                      <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="customerForm.controls.name.errors?.required && customerForm.controls.name.touched">
                         {{ strings.youHaveToFillACustomerName[strings.langService.currentLang] }}
                      </div>
-                     <input type="text" id="txtCustomerName" formControlName="name" class="form-control mb-2" placeholder="Kunde navn">
+                     <input type="text" id="txtCustomerName" formControlName="name" class="form-control mb-2" placeholder="{{ strings.name[strings.langService.currentLang] }}">
                   </div>
                   <div class="w-100"></div>
                   <div class="col">
                      <label for="txtCustomerContact">{{ strings.contactPerson[strings.langService.currentLang] }}</label>
-                     <input type="text" id="txtCustomerContact" formControlName="contactperson" class="form-control mb-2" placeholder="Kontaktperson">
+                     <input type="text" id="txtCustomerContact" formControlName="contactperson" class="form-control mb-2" placeholder="{{ strings.contactPerson[strings.langService.currentLang] }}">
                   </div>
                   <div class="w-100"></div>
                   <div class="col">
                      <label for="txtCustomerCVR">{{ strings.cvrNumber[strings.langService.currentLang] }}</label>
-                     <input type="text" id="txtCustomerCVR" formControlName="cvr" class="form-control mb-2" placeholder="CVR">
+                     <input type="text" id="txtCustomerCVR" formControlName="cvr" class="form-control mb-2" placeholder="{{ strings.cvrNumber[strings.langService.currentLang] }}">
                   </div>
                   <div class="w-100"></div>
                   <div class="col">
                      <label for="txtCustomerStreet">{{ strings.street[strings.langService.currentLang] }}</label>
-                     <input type="text" id="txtCustomerStreet" formControlName="street" class="form-control mb-2" placeholder="Vej">
+                     <input type="text" id="txtCustomerStreet" formControlName="street" class="form-control mb-2" placeholder="{{ strings.street[strings.langService.currentLang] }}">
                   </div>
                   <div class="w-100"></div>
                   <div class="col">
                      <label for="txtCustomerZip">{{ strings.zipCode[strings.langService.currentLang] }}</label>
-                     <input type="text" id="txtCustomerZip" formControlName="zipcode" class="form-control mb-2" placeholder="Post nr.">
+                     <input type="text" id="txtCustomerZip" formControlName="zipcode" class="form-control mb-2" placeholder="{{ strings.zipCode[strings.langService.currentLang] }}">
                   </div>
                   <div class="col">
                      <label for="txtCustomerCity">{{ strings.city[strings.langService.currentLang] }}</label>
-                     <input type="text" id="txtCustomerCity" formControlName="city" class="form-control mb-2" placeholder="By">
+                     <input type="text" id="txtCustomerCity" formControlName="city" class="form-control mb-2" placeholder="{{ strings.city[strings.langService.currentLang] }}">
                   </div>
                </div>
             </div>

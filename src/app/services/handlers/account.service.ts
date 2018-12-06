@@ -16,14 +16,15 @@ export class AccountService {
    constructor(private dataService:AppDataService, private router:Router, private http:HttpClient) {
    }
 
-   setAccount(account:Account, redirectUrl:string = undefined){
+   setAccount(account:Account, redirectUrl:string = 'app', navigateFail:boolean = true){
       console.log('SETTING ACCOUNT', redirectUrl, account )
       if(account == undefined){
-         this.router.navigate(['account/login'])
+         if(navigateFail) {
+            this.router.navigate(['account/login'])
+         }
       }else{
          if(this.dataService.account == undefined){
-            console.log('REDIRECTING', (redirectUrl != undefined ? redirectUrl : 'app'))
-            this.router.navigate([(redirectUrl != undefined ? redirectUrl : 'app')])
+            this.router.navigate([redirectUrl])
          }
          this.dataService.account = account;
          this.dataService.accountSubject.next(account);

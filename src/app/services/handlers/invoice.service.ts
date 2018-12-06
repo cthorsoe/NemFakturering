@@ -63,6 +63,7 @@ export class InvoiceService {
 
    generateInvoice(invoice:Invoice){
       let account = this.dataService.account;
+      let taxPercentage = (account.configuration.taxpercentage / 100);
       const xAxis = 15;
       let yAxis = 20;
       var doc = new jsPDF();
@@ -124,12 +125,43 @@ export class InvoiceService {
       for (let i = 0; i < invoice.items.length; i++) {
          const item = invoice.items[i];
          if(typeof(item.id) == 'number' && item.id > 0){
-            const itemTotal = item.price * item.amount;
-            items.push([item.name, item.amount, item.price, itemTotal])
+            let itemPrice = item.price;
+            let itemTotal = itemPrice * item.amount;
+            if(account.configuration.usetaxes && account.configuration.itempricesincludetaxes){
+               itemPrice = (itemPrice / (1 + taxPercentage))
+               itemTotal = (itemTotal / (1 + taxPercentage))
+            }
+            items.push([item.name, item.amount, itemPrice, itemTotal])
             invoiceTotal+= itemTotal;
          }
       }
-      items.push(['', '', 'I alt', invoiceTotal]);
+      items.push(['', '', '', '']);
+      if(!account.configuration.usetaxes){
+         items.push(['', '', 'I alt', invoiceTotal]);
+      }else{
+        /*  if(account.configuration.itempricesincludetaxes){
+            console.log('INCL TAXES')
+            let invoiceTotalExclTaxes = (invoiceTotal / (1 + taxPercentage))
+            items.push(['', '', 'I alt ekskl. moms', invoiceTotalExclTaxes]);
+            let taxesTotal = invoiceTotalExclTaxes * taxPercentage
+            items.push(['', '', 'Moms udgør', taxesTotal]);
+            items.push(['', '', 'I alt inkl. moms', invoiceTotal]);
+         }else{
+            console.log('EXCL TAXES')
+            items.push(['', '', 'I alt ekskl. moms', invoiceTotal]);
+            let taxesTotal = invoiceTotal * taxPercentage
+            items.push(['', '', 'Moms udgør', taxesTotal]);
+            let invoiceTotalInclTaxes = invoiceTotal + taxesTotal
+            items.push(['', '', 'I alt inkl. moms', invoiceTotalInclTaxes]);
+         } */
+         
+         console.log('EXCL TAXES')
+         items.push(['', '', 'I alt ekskl. moms', invoiceTotal]);
+         let taxesTotal = invoiceTotal * taxPercentage
+         items.push(['', '', 'Moms udgør', taxesTotal]);
+         let invoiceTotalInclTaxes = invoiceTotal + taxesTotal
+         items.push(['', '', 'I alt inkl. moms', invoiceTotalInclTaxes]);
+      }
       yAxis += 8;
       doc.autoTable(itemsColumns, items, {
          theme: 'grid',

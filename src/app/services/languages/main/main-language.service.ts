@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LanguageString } from '../../entities/language-string';
-import { LanguageService } from '../../services/language.service';
+import { LanguageString } from '../../../entities/language-string';
+import { LanguageService } from '../../language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ export class MainLanguageService {
    invoices:LanguageString = new LanguageString('Invoices', 'Fakturaer');
    customers:LanguageString = new LanguageString('Customers', 'Kunder');
    configuration:LanguageString = new LanguageString('Configuration', 'Opsætning');
+   information:LanguageString = new LanguageString('Information', 'Information');
+   items:LanguageString = new LanguageString('Items', 'Varer');
 
    constructor(private langService:LanguageService) {
       // langService.setLangObj(this.title, 'Easy Invoicing', 'Nem Fakturering');

@@ -24,8 +24,27 @@ export class ItemService {
          this.dataService.itemsSubject.next(this.dataService.items);
       }
    }
+
    requestItems(accountId:number) : Observable<Item[]>{
       var observ = this.http.get<Item[]>(this.apiUrl + 'items/list/' + accountId);
       return observ;
    }
+
+   updateItem(item:Item){
+      //MAKE API REQUEST
+   }
+
+   createItem(item:Item){
+      //MAKE API REQUEST
+   }
+
+   deleteItem(itemId:number){
+      //MAKE API REQUEST
+      let index = this.dataService.items.findIndex(x => x.id == itemId);
+      if(index > -1){
+         this.dataService.items = this.dataService.items.splice(index, 1);
+         this.dataService.itemsSubject.next(this.dataService.items)
+      }
+   }
+
 }

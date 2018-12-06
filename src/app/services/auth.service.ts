@@ -56,19 +56,23 @@ export class AuthService {
       });
    }
 
-   tryLogin(): void {
+   tryLogin(url:string = undefined, navigateFail:boolean = true): void {
+      console.log('TRYING TO LOG IN', 'URL IS', url)
       var observ = this.http.get<Account>(this.apiUrl + 'accounts/auth', { withCredentials:true });
       observ.subscribe((account:Account) => {
          if(account){
+            if(!url){
+               url = this.redirectUrl
+            }
             this.isLoggedIn = true;
-            this.accountService.setAccount(account, this.redirectUrl);
+            this.accountService.setAccount(account, url);
          }else{
             this.isLoggedIn = false;
-            this.accountService.setAccount(undefined);
+            this.accountService.setAccount(undefined, undefined, navigateFail);
          }
       }, error => {
          this.isLoggedIn = false;
-         this.accountService.setAccount(undefined);
+         this.accountService.setAccount(undefined, undefined, navigateFail);
       });
    }
 

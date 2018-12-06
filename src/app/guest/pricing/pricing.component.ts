@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PricingLanguageService } from '../../services/languages/pricing/pricing-language.service';
 
 @Component({
   selector: 'app-pricing',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PricingComponent implements OnInit {
 
-  constructor() { }
+   strings:PricingLanguageService;
+   constructor(private pricingLangService:PricingLanguageService) {
+      this.strings = pricingLangService;
+      console.log(this.strings)
+   }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
 
 }

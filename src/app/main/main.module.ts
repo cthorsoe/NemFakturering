@@ -10,16 +10,25 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
-  imports: [
+   imports: [
       CommonModule,
       ReactiveFormsModule,
       MainRoutingModule,
       FontAwesomeModule,
       ChartModule,
-  ],
-  declarations: [MainComponent, MainHomeComponent, InvoiceComponent, InvoiceListComponent, CustomersComponent, ConfigurationComponent],
-  providers: [TitleCasePipe]
+   ],
+   declarations: [
+      MainComponent, 
+      MainHomeComponent, 
+      InvoiceComponent, 
+      InvoiceListComponent, 
+      CustomersComponent, 
+      ItemsComponent,
+      ConfigurationComponent
+   ],
+   providers: [TitleCasePipe]
 })
 export class MainModule { }

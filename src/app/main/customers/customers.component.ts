@@ -4,7 +4,7 @@ import { Customer } from '../../entities/customer';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/handlers/customer.service';
 import { LanguageService } from '../../services/language.service';
-import { CustomersLanguageService } from '../../languages/customers/customers-language.service';
+import { CustomersLanguageService } from '../../services/languages/customers/customers-language.service';
 import { AppDataService } from '../../services/app-data.service';
 
 declare var $:any;
@@ -35,9 +35,8 @@ export class CustomersComponent implements OnInit, OnDestroy {
       this.customerService.setCustomers();
       console.log('SET CUSTOMERS TO', this.customers)
       console.log('RESPONSE')
-
-      
    }
+
    ngOnDestroy(){
       if(this.subscription){
          this.subscription.unsubscribe();
