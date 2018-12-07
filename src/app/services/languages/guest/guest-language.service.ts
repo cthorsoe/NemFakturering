@@ -13,5 +13,5 @@ export class GuestLanguageService {
    logout:LanguageString = new LanguageString('Logout', 'Log ud');
    register:LanguageString = new LanguageString('Register', 'Registrer');
 
-   constructor(private langService:LanguageService) { }
+   constructor(public langService:LanguageService) { }
 }

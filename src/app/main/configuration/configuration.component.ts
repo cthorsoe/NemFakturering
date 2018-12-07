@@ -17,23 +17,29 @@ export class ConfigurationComponent implements OnInit {
    account:Account;
    lang:String;
    subscription;
+   retrievedAccount:boolean
+   updatedAccount:boolean
    constructor(private fb:FormBuilder, private accountService:AccountService, private appService:AppDataService, private configurationLangService:ConfigurationLanguageService) { }
 
    ngOnInit() {
       this.lang = this.appService.currentLang;
       this.strings = this.configurationLangService;
+      this.retrievedAccount = false;
+      this.updatedAccount = false;
       console.log(this.appService);
       this.account = this.appService.account;
+      if(this.account){
+         this.retrievedAccount = true;
+      }else{
+         this.setAccountSubscription();
+      }
       console.log('ACCOUNT', this.appService.account)
       this.createForm();
-      this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
-         console.log('VIEW SUBSCRIBE TRIGGER', account);
-         this.account = account;
-         this.createForm();
-      });
+      
       // this.accountService.setAccount();
       console.log('STRINGS', this.strings);
    }
+
    createForm(){
       if(this.account != undefined){
          this.configurationForm = this.fb.group({
@@ -42,34 +48,41 @@ export class ConfigurationComponent implements OnInit {
             street: [this.account.street],
             zipcode: [this.account.zipcode],
             city: [this.account.city, Validators.required],
-            startvalue: [this.account.configuration.invoicenumberstartvalue, Validators.required],
-            prefix: [this.account.configuration.invoicenumberprefix],
-            minlength: [this.account.configuration.invoicenumberminlength, Validators.required],
-            usetaxes: [this.account.configuration.usetaxes],
-            taxpercentage: [this.account.configuration.taxpercentage],
-            itempricesincludetaxes: [this.account.configuration.itempricesincludetaxes],
-            bankname: [this.account.configuration.bankname],
-            bankregnumber: [this.account.configuration.bankregnumber],
-            bankaccountnumber: [this.account.configuration.bankaccountnumber],
+            configuration: this.fb.group({
+               invoicenumberstartvalue: [this.account.configuration.invoicenumberstartvalue, Validators.required],
+               invoicenumberprefix: [this.account.configuration.invoicenumberprefix],
+               invoicenumberminlength: [this.account.configuration.invoicenumberminlength, Validators.required],
+               usetaxes: [this.account.configuration.usetaxes],
+               taxpercentage: [this.account.configuration.taxpercentage],
+               itempricesincludetaxes: [this.account.configuration.itempricesincludetaxes],
+               paymentduedays: [this.account.configuration.paymentduedays, [Validators.required, Validators.min(0)]],
+               bankname: [this.account.configuration.bankname],
+               bankregnumber: [this.account.configuration.bankregnumber],
+               bankaccountnumber: [this.account.configuration.bankaccountnumber],
+            })
          });
-      }/* else{
-         this.configurationForm = this.fb.group({
-            phone: [''],
-            cvr: [''],
-            street: [''],
-            zipcode: [''],
-            city: ['', Validators.required],
-            startvalue: ['', Validators.required],
-            prefix: [''],
-            minlength: ['', Validators.required],
-            usetaxes: [false],
-            taxpercentage: [0],
-            itempricesincludetaxes: [false],
-            bankname: [''],
-            bankregnumber: [''],
-            bankaccountnumber: [''],
-         });
-      } */
+         console.log(this.configurationForm.value)
+      }
+   }
+
+   setAccountSubscription(){
+      this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
+         console.log('SHOW UPDATED ALERT');
+         this.account = account;
+         this.createForm();
+         if(this.retrievedAccount){
+            this.updatedAccount = true;
+         }
+      });
+   }
+
+   configurationFormSubmit(configurationForm, $event){
+      if(!this.subscription){
+         this.setAccountSubscription()
+      }
+      this.updatedAccount = false;
+      console.log('SUBMIT', configurationForm.value)
+      this.accountService.updateConfiguration(configurationForm.value as Account)
    }
 
 }

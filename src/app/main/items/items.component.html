@@ -3,10 +3,21 @@
          <div class="row">
             <div class="col">
                <h3>{{ strings.yourItems[strings.langService.currentLang] }}</h3>
-               <p class="text-muted mb-0">{{ strings.yourItemsDescription[strings.langService.currentLang] }}</p>
+               <p class="text-muted mb-2">{{ strings.yourItemsDescription[strings.langService.currentLang] }}</p>
+               <!-- <p class="text-muted text-small mb-0">{{ strings.yourItemsInformationNote[strings.langService.currentLang] }}</p> -->
             </div>
             <div class="col-auto">
                <button (click)="showItemModal()" type="button" class="btn btn-primary">{{ strings.createNew[strings.langService.currentLang] }}</button>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col">
+               <div class="alert alert-info alert-dismissible mb-2 text-small" role="alert">
+                  <strong>{{ strings.attention[strings.langService.currentLang] | uppercase }}!</strong> {{ strings.yourItemsInformationNote[strings.langService.currentLang] }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
             </div>
          </div>
       </div>

@@ -58,6 +58,16 @@
 </div>
 <div id="searchItemsList" class="list-group list-group-sm" [style.left]="itemsProps.left" [style.top]="itemsProps.top" [style.width]="itemsProps.width">
    <div class="list-group-item list-group-item-action" *ngFor="let item of searchItems" (click)="pickItemType(item.id)">
-      {{ item.name }} - {{ item.defaultprice }} dkr {{ strings.prUnit[strings.langService.currentLang] }}
+      <span *ngIf="item.id != 0; then itemListGroupItem else newItemListGroupItem"></span>
+      <ng-template #itemListGroupItem>
+         {{ item.name }} - {{ item.defaultprice }} dkr {{ strings.prUnit[strings.langService.currentLang] }}
+      </ng-template>
+      <ng-template #newItemListGroupItem>
+         {{ strings.createAsNewItem[strings.langService.currentLang] }}
+      </ng-template>
+      <!-- {{ item.name }} - {{ item.defaultprice }} dkr {{ strings.prUnit[strings.langService.currentLang] }} -->
    </div>
+   <!-- <div class="list-group-item list-group-item-action" (click)="pickItemType(0)">
+      {{ strings.createAsNewItem[strings.langService.currentLang] }}
+   </div> -->
 </div>

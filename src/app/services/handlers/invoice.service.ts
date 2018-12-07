@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Invoice } from '../../entities/invoice';
 import { Observable } from 'rxjs';
 import { Item } from '../../entities/item';
+import { InvoicesLanguageService } from '../languages/invoices/invoices-language.service';
 import * as moment from 'moment'
 import * as jsPDF from 'jspdf'
 import 'jspdf-autotable';
@@ -15,7 +16,7 @@ import 'jspdf-autotable';
 export class InvoiceService {
 
    apiUrl:string = environment.apiUrl;
-   constructor(private dataService:AppDataService, private http:HttpClient) { 
+   constructor(private dataService:AppDataService, private http:HttpClient, private invoiceLangService:InvoicesLanguageService) { 
    }
 
    setInvoices(){
@@ -64,6 +65,7 @@ export class InvoiceService {
    generateInvoice(invoice:Invoice){
       let account = this.dataService.account;
       let taxPercentage = (account.configuration.taxpercentage / 100);
+      const currentLang = this.invoiceLangService.langService.currentLang;
       const xAxis = 15;
       let yAxis = 20;
       var doc = new jsPDF();
@@ -95,30 +97,31 @@ export class InvoiceService {
 
       if(account.configuration.bankname != null && account.configuration.bankregnumber != null && account.configuration.bankaccountnumber != null){
          yAxis+= 5;
-         this.addTextToPDF('Bank: ' + account.configuration.bankname, 
+         this.addTextToPDF(this.invoiceLangService.bank[currentLang] + ': ' + account.configuration.bankname, 
             doc, yAxis, xAxis, 'right', 11, 'normal');
          yAxis+= 5;
-         this.addTextToPDF('Reg nr: ' + account.configuration.bankregnumber, 
+         this.addTextToPDF(this.invoiceLangService.regNumber[currentLang] + ': ' + account.configuration.bankregnumber, 
             doc, yAxis, xAxis, 'right', 11, 'normal');
          yAxis+= 5;
-         this.addTextToPDF('Kontonr: ' + account.configuration.bankaccountnumber, 
+         this.addTextToPDF(this.invoiceLangService.accountNumber[currentLang] + ': ' + account.configuration.bankaccountnumber, 
             doc, yAxis, xAxis, 'right', 11, 'normal');
          yAxis+= 5;
       }
 
       yAxis+= 5;
-      this.addTextToPDF('Faktura nr.: ' + invoice.invoicenumber, 
+      this.addTextToPDF(this.invoiceLangService.invoiceNumber[currentLang] + ': ' + invoice.invoicenumber, 
          doc, yAxis, xAxis, 'right', 11, 'bold');
-         yAxis+= 5;
-      this.addTextToPDF('Fakturadato: ' + moment().format('DD-MM-YYYY'), 
+      yAxis+= 5;
+      const invoiceDate = moment(invoice.createddate);
+      this.addTextToPDF(this.invoiceLangService.invoiceDate[currentLang] + ': ' + invoiceDate.format('DD-MM-YYYY'), 
          doc, yAxis, xAxis, 'right', 11, 'bold');
-         yAxis+= 5;
-      this.addTextToPDF('Seneste betalingsdato: ' + moment().add(14, 'days').format('DD-MM-YYYY'),
+      yAxis+= 5;
+      this.addTextToPDF(this.invoiceLangService.paymentDue[currentLang] + ': ' + invoiceDate.add(account.configuration.paymentduedays, 'days').format('DD-MM-YYYY'),
          doc, yAxis, xAxis, 'right', 11, 'bold');
 
-      this.addTextToPDF('Faktura',
+      this.addTextToPDF(this.invoiceLangService.invoice[currentLang],
          doc, yAxis, xAxis, 'left', 24, 'bold');
-      let itemsColumns = ['Vare', 'Antal', 'Pris pr. stk', 'Samlet']
+      let itemsColumns = [this.invoiceLangService.item[currentLang], this.invoiceLangService.amount[currentLang], this.invoiceLangService.pricePrUnit[currentLang], this.invoiceLangService.total[currentLang]]
       let items = [];
       let invoiceTotal:number = 0;
       // console.log('ITEMS', invoice.items)
@@ -137,30 +140,13 @@ export class InvoiceService {
       }
       items.push(['', '', '', '']);
       if(!account.configuration.usetaxes){
-         items.push(['', '', 'I alt', invoiceTotal]);
+         items.push(['', '', this.invoiceLangService.inTotal[currentLang], invoiceTotal]);
       }else{
-        /*  if(account.configuration.itempricesincludetaxes){
-            console.log('INCL TAXES')
-            let invoiceTotalExclTaxes = (invoiceTotal / (1 + taxPercentage))
-            items.push(['', '', 'I alt ekskl. moms', invoiceTotalExclTaxes]);
-            let taxesTotal = invoiceTotalExclTaxes * taxPercentage
-            items.push(['', '', 'Moms udgør', taxesTotal]);
-            items.push(['', '', 'I alt inkl. moms', invoiceTotal]);
-         }else{
-            console.log('EXCL TAXES')
-            items.push(['', '', 'I alt ekskl. moms', invoiceTotal]);
-            let taxesTotal = invoiceTotal * taxPercentage
-            items.push(['', '', 'Moms udgør', taxesTotal]);
-            let invoiceTotalInclTaxes = invoiceTotal + taxesTotal
-            items.push(['', '', 'I alt inkl. moms', invoiceTotalInclTaxes]);
-         } */
-         
-         console.log('EXCL TAXES')
-         items.push(['', '', 'I alt ekskl. moms', invoiceTotal]);
+         items.push(['', '', this.invoiceLangService.totalExclTaxes[currentLang], invoiceTotal]);
          let taxesTotal = invoiceTotal * taxPercentage
-         items.push(['', '', 'Moms udgør', taxesTotal]);
+         items.push(['', '', this.invoiceLangService.taxesTotal[currentLang], taxesTotal]);
          let invoiceTotalInclTaxes = invoiceTotal + taxesTotal
-         items.push(['', '', 'I alt inkl. moms', invoiceTotalInclTaxes]);
+         items.push(['', '', this.invoiceLangService.totalInclTaxes[currentLang], invoiceTotalInclTaxes]);
       }
       yAxis += 8;
       doc.autoTable(itemsColumns, items, {

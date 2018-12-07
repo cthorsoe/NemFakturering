@@ -42,7 +42,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       }
    }
 
-   deleteCustomer(itemId:number){
+   deleteItem(itemId:number){
       this.itemService.deleteItem(itemId);
    }
 
@@ -61,7 +61,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
    createForm(item:Item){
       this.itemForm = this.fb.group({
          name: [item.name, Validators.required],
-         defaultprice: [item.price,  [Validators.required, Validators.min(0)]],
+         defaultprice: [item.defaultprice,  [Validators.required, Validators.min(0)]],
       });
    }
 
@@ -81,7 +81,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       }else{
          this.itemService.createItem(newItem);
       }
-      $("#customerModal").modal('hide');
+      $("#itemModal").modal('hide');
    }
 
 }

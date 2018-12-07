@@ -11,118 +11,155 @@
          <form id="frmUpdateConfiguration" [formGroup]="configurationForm" (submit)="configurationFormSubmit(configurationForm, $event)" novalidate>
             <div class="row">
                <div class="col">
-                  <h5>{{ strings.accountInformation[strings.langService.currentLang] }}</h5>
-                  <hr>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtPhone">{{ strings.phone[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtPhone" formControlName="phone" class="form-control mb-2" placeholder="{{ strings.phone[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtCVR">{{ strings.cvr[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtCVR" formControlName="cvr" class="form-control mb-2" placeholder="{{ strings.cvr[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtStreet">{{ strings.street[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtStreet" formControlName="street" class="form-control mb-2" placeholder="{{ strings.street[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtZipcode">{{ strings.zipcode[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtZipcode" formControlName="zipcode" class="form-control mb-2" placeholder="{{ strings.zipcode[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtCity">{{ strings.city[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtCity" formControlName="city" class="form-control mb-2" placeholder="{{ strings.city[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <h5 class="mt-5">Faktura</h5>
-                  <hr>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtInvoiceNumberStartValue">{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtInvoiceNumberStartValue" formControlName="startvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtInvoiceNumberPrefix">{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtInvoiceNumberPrefix" formControlName="prefix" class="form-control mb-2" placeholder="{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtInvoiceNumberMinLength">{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtInvoiceNumberMinLength" formControlName="minlength" class="form-control mb-2" placeholder="{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  
-                  <div class="custom-control custom-checkbox">
-                     <input type="checkbox" class="custom-control-input" id="cbUseTaxes" formControlName="usetaxes">
-                     <label class="custom-control-label" for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
+                  <div class="row" *ngIf="updatedAccount">
+                     <div class="col">         
+                        <div class="alert text-center alert-success mb-2" role="alert">
+                           {{ strings.updateSuccess[strings.langService.currentLang] }}
+                        </div>
+                     </div>
                   </div>
-                  <!-- <label for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
-                  <input type="checkbox" id="cbUseTaxes" formControlName="usetaxes" > -->
-                  <!-- <input type="text" id="txtInvoiceNumberStartValue" formControlName="startvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}" autofocus=""> -->
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtTaxPercentage">{{ strings.taxPercentage[strings.langService.currentLang] }}</label>
-                  <input type="number" id="txtTaxPercentage" formControlName="taxpercentage" class="form-control mb-2" placeholder="{{ strings.taxPercentage[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <div class="custom-control custom-checkbox">
-                     <input type="checkbox" class="custom-control-input" id="cbItemPricesIncludeTaxes" formControlName="itempricesincludetaxes">
-                     <label class="custom-control-label" for="cbItemPricesIncludeTaxes">{{ strings.itemPricesIncludeTaxes[strings.langService.currentLang] }}</label>
+                  <div class="row">
+                     <div class="col">
+                        <h5>{{ strings.accountInformation[strings.langService.currentLang] }}</h5>
+                        <hr>
+                     </div>
                   </div>
-                  
-               </div>
-            </div>
-            <div class="row">
-                  <div class="col">
-                     <h5 class="mt-5">Bank information</h5>
-                     <hr>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtPhone">{{ strings.phone[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtPhone" formControlName="phone" class="form-control mb-2" placeholder="{{ strings.phone[strings.langService.currentLang] }}" autofocus="">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtCVR">{{ strings.cvr[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtCVR" formControlName="cvr" class="form-control mb-2" placeholder="{{ strings.cvr[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtStreet">{{ strings.street[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtStreet" formControlName="street" class="form-control mb-2" placeholder="{{ strings.street[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtZipcode">{{ strings.zipcode[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtZipcode" formControlName="zipcode" class="form-control mb-2" placeholder="{{ strings.zipcode[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtCity">{{ strings.city[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtCity" formControlName="city" class="form-control mb-2" placeholder="{{ strings.city[strings.langService.currentLang] }}">
+                     </div>
                   </div>
                </div>
-            <div class="row">
+            </div>
+            <div class="row" formGroupName="configuration">
                <div class="col">
-                  <label for="txtBankName">{{ strings.bankName[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtBankName" formControlName="bankname" class="form-control mb-2" placeholder="{{ strings.bankName[strings.langService.currentLang] }}" autofocus="">
+                  <div class="row">
+                     <div class="col">
+                        <h5 class="mt-5">{{ strings.invoice[strings.langService.currentLang] }}</h5>
+                        <hr>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtInvoiceNumberStartValue">{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtInvoiceNumberStartValue" formControlName="invoicenumberstartvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtInvoiceNumberPrefix">{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtInvoiceNumberPrefix" formControlName="invoicenumberprefix" class="form-control mb-2" placeholder="{{ strings.invoiceNumberPrefix[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtInvoiceNumberMinLength">{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtInvoiceNumberMinLength" formControlName="invoicenumberminlength" class="form-control mb-2" placeholder="{{ strings.invoiceNumberMinLength[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <div class="custom-control custom-checkbox">
+                           <input type="checkbox" class="custom-control-input" id="cbUseTaxes" formControlName="usetaxes">
+                           <label class="custom-control-label" for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
+                        </div>
+                        <!-- <label for="cbUseTaxes">{{ strings.useTaxes[strings.langService.currentLang] }}</label>
+                        <input type="checkbox" id="cbUseTaxes" formControlName="usetaxes" > -->
+                        <!-- <input type="text" id="txtInvoiceNumberStartValue" formControlName="startvalue" class="form-control mb-2" placeholder="{{ strings.invoiceNumberStartValue[strings.langService.currentLang] }}"> -->
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtTaxPercentage">{{ strings.taxPercentage[strings.langService.currentLang] }}</label>
+                        <input type="number" id="txtTaxPercentage" formControlName="taxpercentage" class="form-control mb-2" placeholder="{{ strings.taxPercentage[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <div class="custom-control custom-checkbox">
+                           <input type="checkbox" class="custom-control-input" id="cbItemPricesIncludeTaxes" formControlName="itempricesincludetaxes">
+                           <label class="custom-control-label" for="cbItemPricesIncludeTaxes">{{ strings.itemPricesIncludeTaxes[strings.langService.currentLang] }}</label>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtPaymentDueDays">{{ strings.daysBeforeInvoicePaymentIsDue[strings.langService.currentLang] }}</label>
+                        <input type="number" id="txtPaymentDueDays" formControlName="paymentduedays" class="form-control mb-2" placeholder="{{ strings.daysBeforeInvoicePaymentIsDue[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row" formGroupName="configuration">
+               <div class="col">
+                  <div class="row">
+                        <div class="col">
+                           <h5 class="mt-5">{{ strings.bankInformation[strings.langService.currentLang] }}</h5>
+                           <hr>
+                        </div>
+                     </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtBankName">{{ strings.bankName[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtBankName" formControlName="bankname" class="form-control mb-2" placeholder="{{ strings.bankName[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtBankRegNumber">{{ strings.bankRegNumber[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtBankRegNumber" formControlName="bankregnumber" class="form-control mb-2" placeholder="{{ strings.bankRegNumber[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <label for="txtBankAccountNumber">{{ strings.bankAccountNumber[strings.langService.currentLang] }}</label>
+                        <input type="text" id="txtBankAccountNumber" formControlName="bankaccountnumber" class="form-control mb-2" placeholder="{{ strings.bankAccountNumber[strings.langService.currentLang] }}">
+                     </div>
+                  </div>
                </div>
             </div>
             <div class="row">
                <div class="col">
-                  <label for="txtBankRegNumber">{{ strings.bankRegNumber[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtBankRegNumber" formControlName="bankregnumber" class="form-control mb-2" placeholder="{{ strings.bankRegNumber[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row">
-               <div class="col">
-                  <label for="txtBankAccountNumber">{{ strings.bankAccountNumber[strings.langService.currentLang] }}</label>
-                  <input type="text" id="txtBankAccountNumber" formControlName="bankaccountnumber" class="form-control mb-2" placeholder="{{ strings.bankAccountNumber[strings.langService.currentLang] }}" autofocus="">
-               </div>
-            </div>
-            <div class="row mt-3">
-               <div class="col text-right">
-                  <button type="submit" class="btn btn-primary">{{ strings.update[strings.langService.currentLang] }}</button>
+                  <div class="row mt-3">
+                     <div class="col">      
+                        <div class="row" *ngIf="updatedAccount">
+                           <div class="col">         
+                              <div class="alert text-center alert-success mb-2" role="alert">
+                                 {{ strings.updateSuccess[strings.langService.currentLang] }}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-auto text-right">
+                        <button type="submit" class="btn btn-primary">{{ strings.update[strings.langService.currentLang] }}</button>
+                     </div>
+                  </div>
                </div>
             </div>
          </form>

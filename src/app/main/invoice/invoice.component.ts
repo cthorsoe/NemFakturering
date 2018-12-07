@@ -25,6 +25,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
    customersSubscription;
    itemsProps:any = {top:"0px", left: "0px", width:"0px"};
    lastSearchedIndex:number = -1;
+   createAsNewItem:Item = new Item(0)
    // itemsSubscription;
    constructor(private invoiceService:InvoiceService, private customerService:CustomerService, private itemsService:ItemService, private invoiceLangService:InvoicesLanguageService, private fb:FormBuilder, private appService:AppDataService) { 
       this.strings = invoiceLangService;
@@ -120,6 +121,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
 
    searchForItems(value:string){
       this.searchItems = this.appService['items'].filter(x => x.name.toLowerCase().indexOf(value) > -1);
+      this.searchItems.push(this.createAsNewItem)
       console.log('search performed', this.searchItems)
    }
 
@@ -137,8 +139,10 @@ export class InvoiceComponent implements OnInit, OnDestroy {
       var formItem = formItems.controls[this.lastSearchedIndex] as FormGroup;
       var item = this.searchItems.find(x => x.id == id);
       formItem.controls['id'].setValue(id);
-      formItem.controls['name'].setValue(item.name);
-      formItem.controls['price'].setValue(item.defaultprice);
+      if(id != 0){
+         formItem.controls['name'].setValue(item.name);
+         formItem.controls['price'].setValue(item.defaultprice);
+      }
       this.searchItems = [];
       console.log(this.invoiceForm);
    }

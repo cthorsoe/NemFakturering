@@ -8,4 +8,5 @@ export class AccountConfiguration {
    public usetaxes:boolean;
    public taxpercentage:number;
    public itempricesincludetaxes:boolean;
+   public paymentduedays:number;
 }

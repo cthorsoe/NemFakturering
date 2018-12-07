@@ -29,6 +29,6 @@ export class PricingLanguageService {
    subscriptionLine3:LanguageString = new LanguageString('Unlimited amount of items', 'Ubegrænset antal varer');
    createSubscription:LanguageString = new LanguageString('Create subscription', 'Opret abonnement');
 
-   constructor(private langService:LanguageService) {
+   constructor(public langService:LanguageService) {
    }
 }

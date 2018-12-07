@@ -14,7 +14,7 @@ export class MainLanguageService {
    information:LanguageString = new LanguageString('Information', 'Information');
    items:LanguageString = new LanguageString('Items', 'Varer');
 
-   constructor(private langService:LanguageService) {
+   constructor(public langService:LanguageService) {
       // langService.setLangObj(this.title, 'Easy Invoicing', 'Nem Fakturering');
       // langService.setLangObj(this.home, 'Home', 'Hjem');
       // langService.setLangObj(this.invoices, 'Invoices', 'Fakturaer');

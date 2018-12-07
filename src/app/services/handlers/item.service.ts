@@ -31,19 +31,52 @@ export class ItemService {
    }
 
    updateItem(item:Item){
-      //MAKE API REQUEST
+      if(this.dataService.items != undefined){
+         var observ = this.http.put<Item>(this.apiUrl + 'items/edit/', item, { responseType:"json" });
+         observ.subscribe((response: Item) => {
+            var items = this.dataService.items;
+            const index = items.findIndex(x => x.id == item.id);
+            if(index > -1){
+               items[index] = response;
+               this.dataService.items = items;
+               this.dataService.itemsSubject.next(items);
+            }
+         });
+      }
    }
 
    createItem(item:Item){
-      //MAKE API REQUEST
+      if(this.dataService.items != undefined && this.dataService.account != undefined){
+         const data = {
+            accountId: this.dataService.account.id,
+            item: item
+         }
+         var observ = this.http.post<Item>(this.apiUrl + 'items/create/', data, { responseType:"json" });
+         observ.subscribe((response: Item) => {
+            var items = this.dataService.items;
+            if(response.id){
+               items.push(response)
+               this.dataService.items = items;
+               this.dataService.itemsSubject.next(items);
+            }
+         });
+      }
    }
 
    deleteItem(itemId:number){
-      //MAKE API REQUEST
-      let index = this.dataService.items.findIndex(x => x.id == itemId);
-      if(index > -1){
-         this.dataService.items = this.dataService.items.splice(index, 1);
-         this.dataService.itemsSubject.next(this.dataService.items)
+      if(this.dataService.items != undefined){
+         var observ = this.http.delete<any>(this.apiUrl + 'items/delete/' + itemId);
+         observ.subscribe((response: any) => {
+            if(response.deleted){
+               var items = this.dataService.items;
+               const index = items.findIndex(x => x.id == itemId);
+               if(index > -1){
+                  items.splice(index, 1);
+                  this.dataService.items = items;
+                  this.dataService.itemsSubject.next(items);
+               }
+            }
+         });
       }
    }
 

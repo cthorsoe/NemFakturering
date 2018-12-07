@@ -64,4 +64,18 @@ export class AccountService {
          }
       });
    }
+
+   updateConfiguration(updatedAccount:Account){
+      if(this.dataService.account){
+         updatedAccount.id = this.dataService.account.id
+         console.log(updatedAccount);
+         var observ = this.http.put<Account>(this.apiUrl + 'accounts/update-configuration/', updatedAccount, { responseType:"json" });
+         observ.subscribe((account:Account) => {
+            this.dataService.account = Object.assign(this.dataService.account, account) as Account;
+            this.dataService.accountSubject.next(this.dataService.account);
+            console.log('RESPONSE', account);
+         });
+      }
+
+   }
 }

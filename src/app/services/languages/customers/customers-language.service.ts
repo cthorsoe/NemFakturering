@@ -24,7 +24,7 @@ export class CustomersLanguageService {
    customer:LanguageString = new LanguageString('Customer', 'Kunde');
    youHaveToFillACustomerName:LanguageString = new LanguageString('You have to fill a customers name', 'Du skal udfylde et kundenavn');
 
-   constructor(private langService:LanguageService) {
+   constructor(public langService:LanguageService) {
       console.log('SETTINGS CUSTOMERS LANG');
       // langService.setLangObj(this.yourCustomers, 'Your customers', 'Dine kunder');
       // langService.setLangObj(this.yourCustomersDescription, 'A list of customers you can currently generate invoices for', 'Liste over de kunder du kan generere fakturaer til');

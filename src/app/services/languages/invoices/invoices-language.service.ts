@@ -25,8 +25,26 @@ export class InvoicesLanguageService {
    filter:LanguageString = new LanguageString('Filter', 'Filtrer');
    date:LanguageString = new LanguageString('Date', 'Dato');
    download:LanguageString = new LanguageString('Download', 'Download');
+   createAsNewItem:LanguageString = new LanguageString('Create as new item', 'Opret som ny vare');
 
-   constructor(private langService:LanguageService) { 
+   /* Invoice Generation Specific */
+   invoice:LanguageString = new LanguageString('Invoice', 'Faktura');
+   bank:LanguageString = new LanguageString('Bank', 'Bank');
+   regNumber:LanguageString = new LanguageString('Reg. number', 'Reg. nummer');
+   accountNumber:LanguageString = new LanguageString('Account number', 'Konto nummer');
+   invoiceNumber:LanguageString = new LanguageString('Invoice number', 'Faktura nr');
+   invoiceDate:LanguageString = new LanguageString('Invoice date', 'Fakturadato');
+   paymentDue:LanguageString = new LanguageString('Payment is due', 'Seneste betalingsdato');
+   item:LanguageString = new LanguageString('Item', 'Vare');
+   total:LanguageString = new LanguageString('Total', 'Samlet');
+   inTotal:LanguageString = new LanguageString('In Total', 'I alt');
+   totalExclTaxes:LanguageString = new LanguageString('Total excl. taxes', 'I alt ekskl. moms');
+   taxesTotal:LanguageString = new LanguageString('Taxes in total', 'Moms udgør');
+   totalInclTaxes:LanguageString = new LanguageString('Total incl. taxes', 'I alt inkl. moms');
+   
+   //pricePrUnitExclTax:LanguageString = new LanguageString('Price pr. unit excl. taxes', 'Pris pr. stk. ekskl. moms');
+
+   constructor(public langService:LanguageService) { 
       // langService.setLangObj(this.generateInvoice, 'Generate invoice', 'Generer faktura');
       // langService.setLangObj(this.generateInvoiceDescription, 'Fill the form to create your invoice', 'Udfyld formen for at lave din faktura');
       // langService.setLangObj(this.customer, 'Customer', 'Kunde');

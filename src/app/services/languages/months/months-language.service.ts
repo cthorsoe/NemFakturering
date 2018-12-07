@@ -19,7 +19,7 @@ export class MonthsLanguageService {
    november:LanguageString = new LanguageString('november', 'november');
    december:LanguageString = new LanguageString('december', 'december');
 
-   constructor(private langService:LanguageService) {
+   constructor(public langService:LanguageService) {
       console.log('SETTINGS MONTHS');
       // langService.setLangObj(this.january, 'january', 'januar');
       // langService.setLangObj(this.february, 'february', 'februar');

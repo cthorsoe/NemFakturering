@@ -12,5 +12,5 @@ export class HomeLanguageService {
    freeTrial:LanguageString = new LanguageString('Free trial', 'Prøv det gratis');
    viewDetails:LanguageString = new LanguageString('View details', 'Læs mere');
 
-   constructor(private langService:LanguageService) { }
+   constructor(public langService:LanguageService) { }
 }

@@ -67,13 +67,12 @@ export class CustomerService {
    }
 
    createCustomer(customer:Customer){
-      if(this.dataService.customers != undefined){
+      if(this.dataService.customers != undefined && this.dataService.account != undefined){
          const data = {
-            accountId: 6 /* */,
+            accountId: this.dataService.account.id,
             customer: customer
          }
          var observ = this.http.post<any>(this.apiUrl + 'customers/create/', data, { responseType:"json" });
-         // this.dataService.customersObserv = observ;
          observ.subscribe((response: Customer) => {
             var customers = this.dataService.customers;
             if(response.id){
@@ -81,7 +80,6 @@ export class CustomerService {
                this.dataService.customers = customers;
                this.dataService.customersSubject.next(customers);
             }
-
          });
       }
    }
