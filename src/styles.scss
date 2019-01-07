@@ -3,6 +3,10 @@ $primaryColor:#008cba;
 $sidebarWidth:250px;
 $customCheckboxOffset:1.703125rem;
 
+body{
+   box-sizing: border-box;
+}
+
 main {
   .carousel-caption {
     top: 10%;
@@ -36,12 +40,9 @@ main {
    display: flex;
    .sidebar{
       height: 100vh;
-      flex-basis: $sidebarWidth;
-      min-width: $sidebarWidth;
       .sidebar-wrapper{
          background:$primaryColor;
          height: 100vh;
-         width:$sidebarWidth;
          position: fixed;
          display: flex;
          flex-direction: column;
@@ -94,6 +95,7 @@ main {
       }
    }
    .main-panel{   
+      overflow-x: hidden;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
@@ -101,7 +103,6 @@ main {
          background: #f7f7f7;
          padding: 30px 15px;
          flex-grow: 1;
-         
       }
    }
 }
@@ -194,8 +195,85 @@ a:not([href]):not([tabindex]){
    animation-timing-function: linear;
 }
 
+#frontPageCarousel{
+   .carousel-caption{
+      color:#111;
+   }
+}
+
+.big-icon{
+   font-size: 4em;
+}
+
 /* The animation code */
 @keyframes spinner {
    from {transform: rotate(0deg)}
    to {transform: rotate(360deg)}
+}
+
+@media screen and (min-width : 992px) {
+   #sideBarMenuIcon{
+      display: none;
+   }
+   .sidebar{
+      flex-basis: $sidebarWidth;
+      min-width: $sidebarWidth;
+      .sidebar-wrapper{
+         width:$sidebarWidth;
+      }
+   }
+   .main-panel{
+      max-width: calc(100vw - #{$sidebarWidth});
+   }
+}
+
+@media screen and (max-width : 992px) {
+   .navbar{
+      justify-content: flex-end;
+      .container{
+         max-width: 100vw;
+      }
+      .navbar-brand{
+         flex-grow: 1;
+      }
+      .navbar-toggler{
+         border:none;
+         .navbar-toggler-icon{
+            background-image: none !important;
+            color:$primaryColor;
+            svg{
+               transform: translateY(2px);
+            }
+         }  
+      }
+   }
+   #sideBarMenuIcon{
+      padding: .2rem 1rem;
+      font-size: 1.25rem;
+   }
+   .wrapper{
+         transition: all .240s ease-out;
+         transform: translateX(0vw);
+      &.show-sidebar{
+         transform: translateX(-90vw);
+      }
+      max-width: 100vw;
+      // overflow-x:hidden;
+      .sidebar{
+         // flex: 1;
+         order: 2;
+         flex-basis: 90vw;
+         min-width: 90vw;
+         // max-width: 90vw;
+         .sidebar-wrapper{
+            width:90vw;
+         }
+      }
+      .main-panel{
+         // flex: 1;
+         order: 1;
+         min-width: 100vw;
+         max-width: 100vw;
+      }
+   }
 }

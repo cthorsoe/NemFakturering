@@ -3,7 +3,7 @@ import { Customer } from '../../entities/customer';
 import { AppDataService } from '../app-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environments';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({

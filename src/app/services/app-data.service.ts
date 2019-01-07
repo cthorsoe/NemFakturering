@@ -14,18 +14,18 @@ import { Invoice } from '../entities/invoice';
 })
 export class AppDataService {
    account:Account;
+   customers:Customer[];
+   items:Item[];
+   invoices:Invoice[];
+
+   
    accountSubject:Subject<Account> = new Subject<Account>();
 
-   customers:Customer[];
    customersSubject:Subject<Customer[]> = new Subject<Customer[]>();
 
-   items:Item[];
    itemsSubject:Subject<Item[]> = new Subject<Item[]>();
 
-   invoices:Invoice[];
    invoicesSubject:Subject<Invoice[]> = new Subject<Invoice[]>();
-
-   currentLang:string = localStorage.getItem('currentLang');
 
    constructor() { 
    }

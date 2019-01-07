@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppDataService } from '../app-data.service';
-import { environment } from '../../environments/environments';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Invoice } from '../../entities/invoice';
 import { Observable } from 'rxjs';
@@ -36,13 +36,13 @@ export class InvoiceService {
       return observ;
    }
 
-   saveInvoice(invoice:any){
+   saveInvoice(invoice:any, callback:any = undefined){
       if(this.dataService.account != undefined){
          const data = {
-            accountId: 6 /* this.dataService.account.id */,
+            accountId: this.dataService.account.id,
             invoice: invoice
          }
-         console.log('SAVING INVOICE');
+         console.log('SAVING INVOICE', this.apiUrl);
          var observ = this.http.post<any>(this.apiUrl + 'invoices/save/', data, { responseType:"json" });
          // this.dataService.customersObserv = observ;
          observ.subscribe((invoice: Invoice) => {
@@ -50,6 +50,11 @@ export class InvoiceService {
             if(this.dataService.invoices != undefined){
                this.dataService.invoices.push(invoice)
                this.dataService.invoicesSubject.next(this.dataService.invoices);
+               
+            }
+            console.log('doing callback')
+            if(callback != undefined){
+               return callback(invoice)
             }
          });
       }
@@ -134,6 +139,7 @@ export class InvoiceService {
                itemPrice = (itemPrice / (1 + taxPercentage))
                itemTotal = (itemTotal / (1 + taxPercentage))
             }
+            console.log('ITEM TOTAL', itemTotal, itemPrice, item.amount)
             items.push([item.name, item.amount, itemPrice, itemTotal])
             invoiceTotal+= itemTotal;
          }

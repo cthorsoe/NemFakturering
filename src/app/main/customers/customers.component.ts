@@ -7,7 +7,10 @@ import { LanguageService } from '../../services/language.service';
 import { CustomersLanguageService } from '../../services/languages/customers/customers-language.service';
 import { AppDataService } from '../../services/app-data.service';
 
-declare var $:any;
+declare var $: any;
+// let $ = require('../../../../node_modules/jquery/dist/jquery.min.js');
+// import * as $ from 'jquery';
+// declare var $: any;
 
 @Component({
   selector: 'app-customers',
@@ -20,8 +23,8 @@ export class CustomersComponent implements OnInit, OnDestroy {
    editCustomer:Customer;
    faTimes = faTimes;
    faEdit = faEdit;
-   strings:CustomersLanguageService;
    subscription;
+   strings:CustomersLanguageService;
    constructor(private customerService:CustomerService, private customersLangService:CustomersLanguageService, private fb: FormBuilder, private appService:AppDataService) {
       this.strings = customersLangService;
    }
@@ -48,8 +51,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
       this.customerService.deleteCustomer(customerId);
    }
 
-   showCustomerModal(customer:Customer = undefined, event:Event){
-      console.log('EVENT', event);
+   showCustomerModal(customer:Customer = undefined){
       if(customer == undefined){
          this.createEmptyForm();
          this.editCustomer = null;

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountService } from './handlers/account.service';
-import { environment } from '../environments/environments';
 import { Account } from '../entities/account';
 import { AppDataService } from './app-data.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 

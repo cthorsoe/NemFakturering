@@ -2,12 +2,17 @@
   <div class="container">
 
     <a class="navbar-brand" routerLink="/">
-      <img src="../../../assets/img/Nemfaktura-logo.png" />
+      <!-- <img src="../../../assets/img/Nemfaktura-logo.png" /> -->
+      <h3>{{ strings.title[strings.langService.currentLang] }}</h3>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <fa-icon class="navbar-toggler-icon" [icon]="faBars"></fa-icon>
+   </button>   
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -19,18 +24,18 @@
         <div *ngIf="account; then loggedIn else notLoggedIn"></div>
          <ng-template #loggedIn>
             <li class="nav-item">
-               <a class="nav-link" routerLink="/account/logout">{{ strings.logout[strings.langService.currentLang] }}</a>
+               <a id="btnLogoutLink"  class="nav-link" routerLink="/account/logout">{{ strings.logout[strings.langService.currentLang] }}</a>
             </li>
             <li class="nav-item" *ngIf="account; else notLoggedIn">
-               <a class="nav-link btn btn-sm btn-primary" routerLink="/app">{{ strings.application[strings.langService.currentLang] }}</a>
+               <a id="btnAppLink" class="nav-link btn btn-sm btn-primary" routerLink="/app">{{ strings.application[strings.langService.currentLang] }}</a>
             </li>
          </ng-template>
          <ng-template #notLoggedIn>
             <li class="nav-item">
-               <a class="nav-link" routerLink="/account/login">{{ strings.login[strings.langService.currentLang] }}</a>
+               <a id="btnLoginLink" class="nav-link" routerLink="/account/login">{{ strings.login[strings.langService.currentLang] }}</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link btn btn-sm btn-success" routerLink="/account/register">{{ strings.register[strings.langService.currentLang] }}</a>
+               <a id="btnRegisterLink" class="nav-link btn btn-sm btn-success" routerLink="/account/register">{{ strings.register[strings.langService.currentLang] }}</a>
             </li>
          </ng-template>
            

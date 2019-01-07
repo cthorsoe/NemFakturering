@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AppDataService } from 'src/app/services/app-data.service';
 import { Account } from 'src/app/entities/account'
 import { GuestLanguageService } from 'src/app/services/languages/guest/guest-language.service';
@@ -13,6 +14,8 @@ export class GuestComponent implements OnInit {
    account:Account;
    subscription;
    strings:GuestLanguageService;
+   faBars = faBars;
+
    constructor(private appService:AppDataService, private guestLangService:GuestLanguageService) { 
       this.strings = guestLangService;
    }

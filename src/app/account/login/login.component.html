@@ -9,20 +9,20 @@
                <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="loginFailed">
                   Login-informationerne var ikke korrekte. Prøv igen.
                </div>
-               <label for="txtLoginUserName" class="sr-only">User name</label>
+               <label for="txtLoginUserName" class="sr-only">{{ strings.username[strings.langService.currentLang] }}</label>
                <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
-                  Du skal udfylde et brugernavn
+                  {{ strings.usernameRequired[strings.langService.currentLang] }}
                </div>
-               <input type="text" id="txtLoginUserName" formControlName="username" class="form-control mb-2" placeholder="User name" autofocus="">
+               <input type="text" id="txtLoginUserName" formControlName="username" class="form-control mb-2" placeholder="{{ strings.username[strings.langService.currentLang] }}" autofocus="">
                
-               <label for="txtLoginPassword" class="sr-only">Password</label>
+               <label for="txtLoginPassword" class="sr-only">{{ strings.password[strings.langService.currentLang] }}</label>
                <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
-                  Du skal udfylde et password
+                  {{ strings.passwordRequired[strings.langService.currentLang] }}
                </div>
-               <input type="password" id="txtLoginPassword" formControlName="password" class="form-control mb-2" placeholder="Password">
+               <input type="password" id="txtLoginPassword" formControlName="password" class="form-control mb-2" placeholder="{{ strings.password[strings.langService.currentLang] }}">
       
-               <button id="btnLogIn" class="btn btn-lg btn-primary btn-block mb-2" type="submit" [disabled]="loginForm.invalid">Sign In</button>
-               <p>Har du ingen konto endnu? <a routerLink="../register">Opret dig her.</a></p>
+               <button id="btnLogIn" class="btn btn-lg btn-primary btn-block mb-2" type="submit" [disabled]="loginForm.invalid">{{ strings.signIn[strings.langService.currentLang] }}</button>
+               <p>{{ strings.dontHaveAnAccount[strings.langService.currentLang] }}? <a routerLink="../register">{{ strings.registerHere[strings.langService.currentLang] }}</a></p>
             </form>
          </div>
       </div>

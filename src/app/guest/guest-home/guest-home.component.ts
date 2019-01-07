@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faFileInvoice, faMoneyBillWave, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 import { HomeLanguageService } from 'src/app/services/languages/home/home-language.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { HomeLanguageService } from 'src/app/services/languages/home/home-langua
 export class GuestHomeComponent implements OnInit {
 
    strings:HomeLanguageService;
+   faFileInvoice = faFileInvoice;
+   faMoneyBillWave = faMoneyBillWave;
+   faHandHoldingHeart = faHandHoldingHeart;
    constructor(private homeLangService:HomeLanguageService) {
       this.strings = homeLangService;
    }

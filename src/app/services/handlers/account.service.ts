@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AppDataService } from '../app-data.service';
 import { Router } from '@angular/router';
+// import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Account } from '../../entities/account';
-import { environment } from '../../environments/environments';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-
+   
+   createdAccountSubject:Subject<boolean> = new Subject<boolean>();
    apiUrl:string = environment.apiUrl;
    constructor(private dataService:AppDataService, private router:Router, private http:HttpClient) {
    }
@@ -24,7 +26,7 @@ export class AccountService {
          }
       }else{
          if(this.dataService.account == undefined){
-            this.router.navigate([redirectUrl])
+            this.router.navigate([redirectUrl == '/account/login' ? '/app/dashboard' : redirectUrl])
          }
          this.dataService.account = account;
          this.dataService.accountSubject.next(account);
@@ -55,6 +57,7 @@ export class AccountService {
          switch (response.status) {
             case 'SUCCESS':
                console.log('ACCOUNT SUCCESSFULLY CREATED')
+               this.createdAccountSubject.next(true);
                break;
             case 'TAKEN':
                break;

@@ -6,6 +6,7 @@ import { LanguageService } from '../../language.service';
   providedIn: 'root'
 })
 export class GuestLanguageService {
+   title:LanguageString = new LanguageString('Easy Invoicing', 'Nem Fakturering');
    theProduct:LanguageString = new LanguageString('The product', 'Produktet');
    pricing:LanguageString = new LanguageString('Pricing', 'Priser');
    application:LanguageString = new LanguageString('Application', 'Applikation');

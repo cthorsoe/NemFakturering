@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faReceipt, faCog, faCogs, faInfoCircle, /* faCubes, */ faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faReceipt, faCog, faCogs, faInfoCircle, /* faCubes, */ faShoppingCart, faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { MainLanguageService } from '../../services/languages/main/main-language.service';
@@ -7,6 +7,8 @@ import { AccountService } from '../../services/handlers/account.service';
 import { AppDataService } from '../../services/app-data.service';
 import { Account } from '../../entities/account';
 import { Router } from '@angular/router';
+
+declare var $: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -24,6 +26,9 @@ export class MainComponent implements OnInit {
    // faCubes = faCubes;
    faShoppingCart = faShoppingCart;
    faInfoCircle = faInfoCircle;
+   faBars = faBars;
+   faCaretDown = faCaretDown;
+
    subscription;
 
    
@@ -55,6 +60,10 @@ export class MainComponent implements OnInit {
          // this.mainLangService['langService'].currentLang = lang;
          // localStorage.setItem('currentLang', lang);
       }
+   }
+
+   toggleSidebar(){
+      $("#mainWrapper").toggleClass('show-sidebar');
    }
 
 }

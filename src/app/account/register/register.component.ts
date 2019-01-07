@@ -5,6 +5,7 @@ import { AppDataService } from '../../services/app-data.service';
 import { AccountService } from '../../services/handlers/account.service';
 import { Account } from '../../entities/account';
 import { CheckPasswordsValidator } from '../../validators/CheckPasswordsValidator';
+import { AccountLanguageService } from '../../services/languages/account/account-language.service';
 
 
 @Component({
@@ -15,9 +16,13 @@ import { CheckPasswordsValidator } from '../../validators/CheckPasswordsValidato
 export class RegisterComponent implements OnInit {
    registerForm: FormGroup;
    randomAdmin:number;
+   accountCreated:boolean = false;
    loginFailed:boolean = false;
    subscription;
-   constructor(private fb: FormBuilder, private router:Router, private appService:AppDataService, private accountService:AccountService) { }
+   strings:AccountLanguageService
+   constructor(private fb: FormBuilder, private accountLangService:AccountLanguageService, private router:Router, private appService:AppDataService, private accountService:AccountService) { 
+      this.strings = accountLangService;
+   }
 
    ngOnInit() {
       this.createForm();
@@ -33,6 +38,9 @@ export class RegisterComponent implements OnInit {
          }
       });
       console.log('randomAdmin', this.randomAdmin);
+      this.subscription = this.accountService.createdAccountSubject.subscribe((result:boolean) => {
+         this.accountCreated = result;
+      })
    }
 
    createForm(){
@@ -43,7 +51,7 @@ export class RegisterComponent implements OnInit {
          'password': new FormControl('', Validators.required),
          'passwordConfirm': new FormControl('', Validators.required)
       }, { 
-         validators:CheckPasswordsValidator.getCheckPasswordsValidator()
+         validators: CheckPasswordsValidator.getCheckPasswordsValidator()
       });
    }
 

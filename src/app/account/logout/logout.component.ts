@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+   faSpinner = faSpinner;
+   constructor(private authService:AuthService) { }
 
    ngOnInit() {
       this.authService.logout();

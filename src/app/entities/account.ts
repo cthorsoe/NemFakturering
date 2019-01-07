@@ -31,4 +31,4 @@ export class Account {
    public email:string;
    public phone:string;
    public configuration:AccountConfiguration
-}0
+}

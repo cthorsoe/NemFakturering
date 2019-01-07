@@ -31,7 +31,7 @@
                   </div>
                   <!-- <input *ngFor="let item of invoiceForm.get('items').controls; index as index;" class="form-control mb-2" (keyup)="itemFieldInput(index)" value="{{ item.value }}" type="text" id="txtInvoiceItem.[{{ index }}]" placeholder="{{ strings.item[strings.langService.currentLang] }}"> -->
                   <div #itemList formArrayName="items"
-                     *ngFor="let item of invoiceForm.get('items').controls; let i = index;">
+                     *ngFor="let item of invoiceForm.get('items')['controls']; let i = index;">
                      <div class="row" [formGroupName]="i">
                         <input type="hidden" formControlName="id" class="form-control mb-2">
                         <div class="col-sm-2">

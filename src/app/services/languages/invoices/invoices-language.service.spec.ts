@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+/* import { TestBed, inject } from '@angular/core/testing';
 
 import { InvoicesLanguageService } from './invoices-language.service';
 
@@ -13,3 +13,4 @@ describe('InvoicesLanguageService', () => {
     expect(service).toBeTruthy();
   }));
 });
+ */

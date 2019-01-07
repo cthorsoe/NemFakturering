@@ -5,6 +5,7 @@ import { MonthsLanguageService } from '../../services/languages/months/months-la
 import { TitleCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
+declare var $: any;
 @Component({
   selector: 'app-main-home',
   templateUrl: './main-home.component.html',

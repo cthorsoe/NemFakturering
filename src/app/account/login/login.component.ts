@@ -6,6 +6,7 @@ import { AppDataService } from '../../services/app-data.service';
 import { AccountService } from '../../services/handlers/account.service';
 import { Account } from '../../entities/account';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { AccountLanguageService } from '../../services/languages/account/account-language.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,14 @@ export class LoginComponent implements OnInit {
    randomAdmin:number;
    loginFailed:boolean = false;
    subscription;
-   constructor(private fb: FormBuilder, private router:Router, private authService:AuthService, private appService:AppDataService, private accountService:AccountService, private _cookieService:CookieService) { }
+   strings;
+   constructor(private fb: FormBuilder, private router:Router, private accountLangService:AccountLanguageService, private authService:AuthService, private appService:AppDataService, private accountService:AccountService, private _cookieService:CookieService) {
+      this.strings = accountLangService;
+   }
 
    ngOnInit() {
       console.log('COOKIE', this._cookieService.get('connect.sid'))
       this.createForm();
-      this.randomAdmin = Math.floor(Math.random() * Math.floor(2));
       this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
          console.log('HIT', account)
          if(account != undefined){
@@ -34,7 +37,6 @@ export class LoginComponent implements OnInit {
             this.loginFailed = true;
          }
       });
-      console.log('randomAdmin', this.randomAdmin);
    }
 
    createForm(){
@@ -47,7 +49,6 @@ export class LoginComponent implements OnInit {
    loginFormSubmit(loginForm:FormGroup, event:Event){
       console.log('SUBMITTING ACCOUNT')
       this.authService.login(loginForm.value);
-      // this.router.navigate([this.authService.redirectUrl != undefined ? this.authService.redirectUrl : '/app']);
    }
 
    getCookie(cname) {

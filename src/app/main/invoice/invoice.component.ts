@@ -48,9 +48,6 @@ export class InvoiceComponent implements OnInit, OnDestroy {
       if(this.customersSubscription){
          this.customersSubscription.unsubscribe();
       }
-      // if(this.itemsSubscription){
-      //    this.itemsSubscription.unsubscribe();
-      // }
    }
 
    createForm(){
@@ -59,6 +56,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
          customerId: ['', Validators.required],
          items:  this.fb.array([this.createItem(true)])
       });
+      console.log('items!', this.invoiceForm.get('items')['controls'])
    }
 
    createItem(required:boolean): FormGroup{
@@ -74,8 +72,10 @@ export class InvoiceComponent implements OnInit, OnDestroy {
    invoiceFormSubmit(invoiceForm:FormGroup, event:Event){
       console.log('SUBMIT',  invoiceForm);
       var invoice = invoiceForm.value;
-      this.invoiceService.saveInvoice(invoice);
-      this.invoiceService.createInvoiceFromForm(invoice);
+      this.invoiceService.saveInvoice(invoice, (savedInvoice) => {
+         console.log('callback hit', savedInvoice, invoice)
+         this.invoiceService.generateInvoice(savedInvoice);
+      });
    }
 
 

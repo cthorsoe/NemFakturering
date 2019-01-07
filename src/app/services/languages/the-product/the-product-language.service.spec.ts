@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+/* import { TestBed, inject } from '@angular/core/testing';
 
 import { TheProductLanguageService } from './the-product-language.service';
 
@@ -13,3 +13,4 @@ describe('TheProductLanguageService', () => {
     expect(service).toBeTruthy();
   }));
 });
+ */

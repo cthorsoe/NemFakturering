@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+/* import { TestBed, inject } from '@angular/core/testing';
 
 import { DashboardLanguageService } from './dashboard-language.service';
 
@@ -13,3 +13,4 @@ describe('DashboardLanguageService', () => {
     expect(service).toBeTruthy();
   }));
 });
+ */

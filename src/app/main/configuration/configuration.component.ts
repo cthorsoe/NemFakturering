@@ -22,7 +22,7 @@ export class ConfigurationComponent implements OnInit {
    constructor(private fb:FormBuilder, private accountService:AccountService, private appService:AppDataService, private configurationLangService:ConfigurationLanguageService) { }
 
    ngOnInit() {
-      this.lang = this.appService.currentLang;
+      this.lang = this.configurationLangService.langService.currentLang;
       this.strings = this.configurationLangService;
       this.retrievedAccount = false;
       this.updatedAccount = false;

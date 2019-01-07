@@ -23,7 +23,8 @@ import { GuestComponent } from './guest/guest/guest.component';
 import { GuestHomeComponent } from './guest/guest-home/guest-home.component';
 import { TheProductComponent } from './guest/the-product/the-product.component';
 import { PricingComponent } from './guest/pricing/pricing.component';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
+import { AccountService } from './services/handlers/account.service';
 
 @NgModule({
    declarations: [
@@ -45,7 +46,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
       HttpClientModule,
       FontAwesomeModule
    ],
-   providers: [AuthService, AuthLoginGuardService, AuthAdminGuardService, AppDataService, CookieService],
+   providers: [AuthService, AuthLoginGuardService, AuthAdminGuardService, AppDataService, CookieService, { provide: CookieOptions, useValue: {} }],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

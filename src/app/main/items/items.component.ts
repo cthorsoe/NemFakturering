@@ -5,8 +5,8 @@ import { Item } from '../../entities/item';
 import { ItemsLanguageService } from '../../services/languages/items/items-language.service';
 import { ItemService } from '../../services/handlers/item.service';
 import { AppDataService } from '../../services/app-data.service';
-
-declare var $:any;
+// let $ = require('../../../../node_modules/jquery/dist/jquery.min.js')
+declare var $: any;
 
 @Component({
   selector: 'app-items',
@@ -46,8 +46,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       this.itemService.deleteItem(itemId);
    }
 
-   showItemModal(item:Item = undefined, event:Event){
-      console.log('EVENT', item, event);
+   showItemModal(item:Item = undefined){
       if(item == undefined){
          this.createEmptyForm();
          this.editItem = null;
