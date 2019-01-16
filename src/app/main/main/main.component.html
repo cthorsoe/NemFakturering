@@ -29,6 +29,18 @@
                   <p>{{ strings.items[strings.langService.currentLang] }}</p>
                </a>
             </li>
+            <!-- <li>
+               <a class="nav-link" routerLinkActive="active" routerLink="./activate">
+                  <fa-icon [icon]="faMoneyBillWave"></fa-icon>
+                  <p>{{ strings.activate[strings.langService.currentLang] }}</p>
+               </a>
+            </li> -->
+            <li>
+               <a *ngIf="subscriptionRequired" class="nav-link" routerLinkActive="active" routerLink="./subscription">
+                  <fa-icon [icon]="faMoneyBillWave"></fa-icon>
+                  <p>{{ strings.subscription[strings.langService.currentLang] }}</p>
+               </a>
+            </li>
             <li>
                <a class="nav-link" routerLinkActive="active" routerLink="./configuration">
                   <fa-icon [icon]="faCog"></fa-icon>

@@ -41,27 +41,17 @@ export class InvoicesLanguageService {
    totalExclTaxes:LanguageString = new LanguageString('Total excl. taxes', 'I alt ekskl. moms');
    taxesTotal:LanguageString = new LanguageString('Taxes in total', 'Moms udgør');
    totalInclTaxes:LanguageString = new LanguageString('Total incl. taxes', 'I alt inkl. moms');
+   from:LanguageString = new LanguageString('From', 'Fra');
+   for:LanguageString = new LanguageString('For', 'Til');
+   notes:LanguageString = new LanguageString('Notes', 'Noter');
+   receipent:LanguageString = new LanguageString('Receipent', 'Modtager');
    
-   //pricePrUnitExclTax:LanguageString = new LanguageString('Price pr. unit excl. taxes', 'Pris pr. stk. ekskl. moms');
+   /* No access to invoice generation */
+   activeSubscriptionRequired:LanguageString = new LanguageString('Active subscription required', 'Aktivt abonnement påkrævet');
+   activeSubscriptionRequiredLead:LanguageString = new LanguageString('In order to gain access to this area, you need an active subscription', 'For at få adgang hertil, skal du først have et aktivt abonnement');
+   activeSubscriptionRequiredDesc:LanguageString = new LanguageString('To get started setting up a subscription, click on the following button', 'Vil du gerne i gang med at oprette et abonnement, bedes du kikke på følgene knap');
+   goToSubscription:LanguageString = new LanguageString('Go to subscription', 'Gå til abonnement');
 
    constructor(public langService:LanguageService) { 
-      // langService.setLangObj(this.generateInvoice, 'Generate invoice', 'Generer faktura');
-      // langService.setLangObj(this.generateInvoiceDescription, 'Fill the form to create your invoice', 'Udfyld formen for at lave din faktura');
-      // langService.setLangObj(this.customer, 'Customer', 'Kunde');
-      // langService.setLangObj(this.chooseCustomer, 'Choose customer', 'Vælg kunde');
-      // langService.setLangObj(this.items, 'Items', 'Varer');
-      // langService.setLangObj(this.itemName, 'Item name', 'Varens navn');
-      // langService.setLangObj(this.price, 'Price', 'Pris');
-      // langService.setLangObj(this.pricePrUnit, 'Price pr. unit', 'Pris pr. stk.');
-      // langService.setLangObj(this.amount, 'Amount', 'Antal');
-      // langService.setLangObj(this.prUnit, 'pr. unit', 'pr. stk.');
-      // langService.setLangObj(this.insertAmount, 'Insert amount', 'Indtast antal');
-      // langService.setLangObj(this.insertItemName, 'Insert the name of the item', 'Indtast navnet på varen');
-      // langService.setLangObj(this.insertPricePrUnit, 'Insert the price pr. unit', 'Indtast prisen pr. stk.');
-      // langService.setLangObj(this.yourInvoices, 'Your invoices', 'Dine fakturaer');
-      // langService.setLangObj(this.filterList, 'Filter list', 'Filtrer liste');
-      // langService.setLangObj(this.filter, 'Filter', 'Filtrer');
-      // langService.setLangObj(this.date, 'Date', 'Dato');
-      // langService.setLangObj(this.download, 'Download', 'Download');
    }
 }

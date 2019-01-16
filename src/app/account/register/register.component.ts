@@ -16,8 +16,8 @@ import { AccountLanguageService } from '../../services/languages/account/account
 export class RegisterComponent implements OnInit {
    registerForm: FormGroup;
    randomAdmin:number;
-   accountCreated:boolean = false;
-   loginFailed:boolean = false;
+   // accountCreated:boolean = false;
+   submitStatus:string = 'NOSUBMIT';
    subscription;
    strings:AccountLanguageService
    constructor(private fb: FormBuilder, private accountLangService:AccountLanguageService, private router:Router, private appService:AppDataService, private accountService:AccountService) { 
@@ -27,19 +27,12 @@ export class RegisterComponent implements OnInit {
    ngOnInit() {
       this.createForm();
       this.randomAdmin = Math.floor(Math.random() * Math.floor(2));
-      this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
+      /* this.subscription = this.appService.accountSubject.subscribe((account: Account) => {
          console.log('HIT', account)
-         if(account != undefined){
-            //SUCCESS
-            this.loginFailed = false;
-         }else{
-            //ERROR
-            this.loginFailed = true;
-         }
-      });
+      }); */
       console.log('randomAdmin', this.randomAdmin);
-      this.subscription = this.accountService.createdAccountSubject.subscribe((result:boolean) => {
-         this.accountCreated = result;
+      this.subscription = this.accountService.createSubmitSubject.subscribe((status:string) => {
+         this.submitStatus = status;
       })
    }
 

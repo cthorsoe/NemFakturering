@@ -13,12 +13,10 @@ export class MainLanguageService {
    configuration:LanguageString = new LanguageString('Configuration', 'Opsætning');
    information:LanguageString = new LanguageString('Information', 'Information');
    items:LanguageString = new LanguageString('Items', 'Varer');
+   subscribe:LanguageString = new LanguageString('Subscribe', 'Abonner');
+   subscription:LanguageString = new LanguageString('Subscription', 'Abonnement');
+   activate:LanguageString = new LanguageString('Activate', 'Aktiver');
 
    constructor(public langService:LanguageService) {
-      // langService.setLangObj(this.title, 'Easy Invoicing', 'Nem Fakturering');
-      // langService.setLangObj(this.home, 'Home', 'Hjem');
-      // langService.setLangObj(this.invoices, 'Invoices', 'Fakturaer');
-      // langService.setLangObj(this.customers, 'Customers', 'Kunder');
-      // langService.setLangObj(this.configuration, 'Configuration', 'Opsætning');
    }
 }

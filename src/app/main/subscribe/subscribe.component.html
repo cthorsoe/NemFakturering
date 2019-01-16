@@ -1,0 +1,79 @@
+<div class="card">
+   <div class="card-body">
+      <div *ngIf="account.subscription && !account.subscription.canceled; then active else notActive"></div>
+      <ng-template #active>
+         <div class="alert alert-success"><strong>Status: Active</strong> - Your subscription is active</div>
+         <h3>Your account subscription is active!</h3>
+         <p class="my-0"><strong>Subscription created:</strong> {{ account.subscription.created | date:'dd-MM-yyyy' }}</p>
+         <p class="my-0"><strong>Current period started:</strong> {{ account.subscription.periodStart | date:'dd-MM-yyyy' }}</p>
+         <p class="my-0"><strong>Current period ends:</strong> {{ account.subscription.periodEnd | date:'dd-MM-yyyy' }}</p>
+         <button class="btn btn-primary mt-3" (click)="openCancelSubscriptionModel()">Cancel subscription</button>
+      </ng-template>
+      <ng-template #notActive>
+         <div *ngIf="account.subscription && !account.subscription.ended; then canceled else ended"></div>
+         <ng-template #canceled>
+            <div class="alert alert-warning"><strong>Status: Canceled</strong> - Your subscription is canceled</div>
+            <h3>Your account is canceled, but period hasn't ended yet!</h3>
+            <p class="my-0"><strong>Subscription created:</strong> {{ account.subscription.created | date:'dd-MM-yyyy' }}</p>
+            <p class="my-0"><strong>Current period started:</strong> {{ account.subscription.periodStart | date:'dd-MM-yyyy' }}</p>
+            <p class="my-0"><strong>Current period ends:</strong> {{ account.subscription.periodEnd | date:'dd-MM-yyyy' }}</p>
+            <p class="my-0"><strong>Subscription canceled:</strong> {{ account.subscription.canceledAt | date:'dd-MM-yyyy' }}</p>
+            <button class="btn btn-primary mt-3" (click)="openReactivateSubscriptionModel()">Reactivate subscription</button>
+         </ng-template>
+         <ng-template #ended>
+            <div class="alert alert-danger"><strong>Status: Ended</strong> - Your subscription is ended</div>
+            <h3>Your account is not active!</h3>
+            <button class="btn btn-primary" (click)="openCheckout()">Create subscription</button>
+         </ng-template>
+      </ng-template>
+   </div>
+</div>
+
+<div id="cancelSubscriptionModal" class="modal fade" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+         <h5 class="modal-title">Cancel subscription?</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col">
+                  <p>Are you sure you wish to cancel your subscription?</p>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close window</button>
+            <button type="submit" class="btn btn-primary" (click)="cancelSubscriptionConfirm()">Cancel subscription</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="reactivateSubscriptionModal" class="modal fade" tabindex="-1" role="dialog">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+         <h5 class="modal-title">Reactivate subscription?</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col">
+                  <p>Are you sure you wish to reactivate your subscription?</p>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close window</button>
+            <button type="submit" class="btn btn-primary" (click)="reactivateSubscriptionConfirm()">Reactivate subscription</button>
+         </div>
+      </div>
+   </div>
+</div>
+      

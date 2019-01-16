@@ -50,6 +50,12 @@ export class InvoiceListComponent implements OnInit {
 
    filterFormSubmit(form, event){
       console.log('FILTERING', form, event);
+      let customerId = form.value.customerId
+      if(customerId != "0"){
+         this.invoices = this.appService.invoices.filter(x => x.customer.id == customerId);
+      }else{
+         this.invoices = this.appService.invoices;
+      }
    }
 
    toggleFilterForm(show:boolean){

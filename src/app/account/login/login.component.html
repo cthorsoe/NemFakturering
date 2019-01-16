@@ -6,8 +6,11 @@
          </div>
          <div class="card-body">
             <form class="form-signin" id="frmLogin" [formGroup]="loginForm" (submit)="loginFormSubmit(loginForm, $event)" novalidate>
-               <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="loginFailed">
-                  Login-informationerne var ikke korrekte. Prøv igen.
+               <div class="alert text-center alert-warning mb-2" role="alert" *ngIf="loginFailed || submitStatus == 'NOUSER' || submitStatus == 'NOMATCH'">
+                  {{ strings.loginFailed[strings.langService.currentLang] }}
+               </div>
+               <div class="alert text-center alert-warning mb-2" role="alert" *ngIf="submitStatus == 'NOTVERIFIED'">
+                  {{ strings.notVerified[strings.langService.currentLang] }}
                </div>
                <label for="txtLoginUserName" class="sr-only">{{ strings.username[strings.langService.currentLang] }}</label>
                <div class="alert text-center alert-danger mb-2" role="alert" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">

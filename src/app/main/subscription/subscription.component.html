@@ -1,0 +1,79 @@
+<div class="card">
+      <div class="card-body">
+         <div *ngIf="account.subscription && !account.subscription.canceled; then active else notActive"></div>
+         <ng-template #active>
+            <div class="alert alert-success"><strong>{{ strings.status[strings.langService.currentLang] }}: {{ strings.active[strings.langService.currentLang] }}</strong> - {{ strings.activeDescription[strings.langService.currentLang] }}</div>
+            <h3>{{ strings.activeTitle[strings.langService.currentLang] }}</h3>
+            <p class="my-0"><strong>{{ strings.subscriptionCreated[strings.langService.currentLang] }}:</strong> {{ account.subscription.created | date:'dd-MM-yyyy' }}</p>
+            <p class="my-0"><strong>{{ strings.currentPeriodStarted[strings.langService.currentLang] }}:</strong> {{ account.subscription.periodStart | date:'dd-MM-yyyy' }}</p>
+            <p class="my-0"><strong>{{ strings.currentPeriodEnds[strings.langService.currentLang] }}:</strong> {{ account.subscription.periodEnd | date:'dd-MM-yyyy' }}</p>
+            <button class="btn btn-primary mt-3" (click)="openCancelSubscriptionModel()">{{ strings.cancelSubscription[strings.langService.currentLang] }}</button>
+         </ng-template>
+         <ng-template #notActive>
+            <div *ngIf="account.subscription && !account.subscription.ended; then canceled else inactive"></div>
+            <ng-template #canceled>
+               <div class="alert alert-warning"><strong>{{ strings.status[strings.langService.currentLang] }}: {{ strings.canceled[strings.langService.currentLang] }}</strong> - {{ strings.canceledDescription[strings.langService.currentLang] }}</div>
+               <h3>{{ strings.canceledTitle[strings.langService.currentLang] }}</h3>
+               <p class="my-0"><strong>{{ strings.subscriptionCreated[strings.langService.currentLang] }}:</strong> {{ account.subscription.created | date:'dd-MM-yyyy' }}</p>
+               <p class="my-0"><strong>{{ strings.currentPeriodStarted[strings.langService.currentLang] }}:</strong> {{ account.subscription.periodStart | date:'dd-MM-yyyy' }}</p>
+               <p class="my-0"><strong>{{ strings.currentPeriodEnds[strings.langService.currentLang] }}:</strong> {{ account.subscription.periodEnd | date:'dd-MM-yyyy' }}</p>
+               <p class="my-0"><strong>{{ strings.subscriptionCanceled[strings.langService.currentLang] }}:</strong> {{ account.subscription.canceledAt | date:'dd-MM-yyyy' }}</p>
+               <button class="btn btn-primary mt-3" (click)="openReactivateSubscriptionModel()">{{ strings.reactivateSubscription[strings.langService.currentLang] }}</button>
+            </ng-template>
+            <ng-template #inactive>
+               <div class="alert alert-danger"><strong>{{ strings.status[strings.langService.currentLang] }}: {{ strings.inactive[strings.langService.currentLang] }}</strong> - {{ strings.inactiveDescription[strings.langService.currentLang] }}</div>
+               <h3>{{ strings.inactiveTitle[strings.langService.currentLang] }}</h3>
+               <button class="btn btn-primary" (click)="openCheckout()">{{ strings.createSubscription[strings.langService.currentLang] }}</button>
+            </ng-template>
+         </ng-template>
+      </div>
+   </div>
+   
+   <div id="cancelSubscriptionModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">{{ strings.cancelSubscription[strings.langService.currentLang] }}?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="col">
+                     <p>{{ strings.cancelSubscriptionConfirm[strings.langService.currentLang] }}</p>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ strings.closeWindow[strings.langService.currentLang] }}</button>
+               <button type="submit" class="btn btn-primary" (click)="cancelSubscriptionConfirm()">{{ strings.cancelSubscription[strings.langService.currentLang] }}</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div id="reactivateSubscriptionModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">{{ strings.reactivateSubscription[strings.langService.currentLang] }}?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="col">
+                     <p>{{ strings.reactivateSubscriptionConfirm[strings.langService.currentLang] }}</p>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ strings.closeWindow[strings.langService.currentLang] }}</button>
+               <button type="submit" class="btn btn-primary" (click)="reactivateSubscriptionConfirm()">{{ strings.reactivateSubscription[strings.langService.currentLang] }}</button>
+            </div>
+         </div>
+      </div>
+   </div>
+         

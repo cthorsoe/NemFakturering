@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faFileInvoice, faMoneyBillWave, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
-import { HomeLanguageService } from 'src/app/services/languages/home/home-language.service';
+import { HomeLanguageService } from '../../services/languages/home/home-language.service';
 
 @Component({
   selector: 'app-guest-home',

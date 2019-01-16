@@ -5,8 +5,17 @@
             <h1 class="h3 m-0 font-weight-normal text-center">{{ strings.register[strings.langService.currentLang] }}</h1>
          </div>
          <div class="card-body">
-            <div id="alertAccountCreated" class="alert text-center alert-success mb-2" role="alert" *ngIf="accountCreated">
+            <div id="alertAccountCreated" class="alert text-center alert-success mb-2" role="alert" *ngIf="submitStatus == 'SUCCESS'">
                {{ strings.accountCreatedSuccess[strings.langService.currentLang] }}
+            </div>
+            <div id="alertTaken" class="alert text-center alert-warning mb-2" role="alert" *ngIf="submitStatus == 'TAKEN'">
+               {{ strings.usernameOrEmailTaken[strings.langService.currentLang] }}
+            </div>
+            <div id="alertInvalidEmail" class="alert text-center alert-warning mb-2" role="alert" *ngIf="submitStatus == 'INVALIDEMAIL'">
+               {{ strings.invalidEmail[strings.langService.currentLang] }}
+            </div>
+            <div id="alertError" class="alert text-center alert-danger mb-2" role="alert" *ngIf="submitStatus == 'ERROR'">
+               {{ strings.submitError[strings.langService.currentLang] }}
             </div>
             <form class="form-signin" id="frmRegister" [formGroup]="registerForm" (submit)="registerFormSubmit(registerForm, $event)" novalidate>
                <label for="txtRegisterEmail" class="sr-only">{{ strings.email[strings.langService.currentLang] }}</label>

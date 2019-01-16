@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { AppDataService } from 'src/app/services/app-data.service';
-import { Account } from 'src/app/entities/account'
-import { GuestLanguageService } from 'src/app/services/languages/guest/guest-language.service';
+import { AppDataService } from '../../services/app-data.service';
+import { Account } from '../../entities/account'
+import { GuestLanguageService } from '../../services/languages/guest/guest-language.service';
 
 @Component({
   selector: 'app-guest',

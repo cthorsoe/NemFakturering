@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountService } from './handlers/account.service';
 import { Account } from '../entities/account';
 import { AppDataService } from './app-data.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
+import { Subject } from '../../../node_modules/rxjs';
 
 @Injectable()
 
@@ -13,6 +14,7 @@ export class AuthService {
    isLoggedIn:boolean = false;
    isAdmin:boolean = false;
    redirectUrl:string;
+   loginStatusSubject:Subject<string> = new Subject<string>();
    constructor(private router:Router, private accountService:AccountService,  private appService:AppDataService, private http:HttpClient) { }
 
    // exlogin(isAdmin:boolean): void {
@@ -32,6 +34,7 @@ export class AuthService {
       observ.subscribe((response) => {
          if(response && response.status){
             this.isLoggedIn = false;
+            this.loginStatusSubject.next(response.status);
          }else{
             this.isLoggedIn = true;
             this.accountService.setAccount(response, this.redirectUrl);
@@ -43,18 +46,20 @@ export class AuthService {
    }
 
    logout(): void{
+      console.log('LOGGING OUT')
       this.isLoggedIn = false;
       this.isAdmin = false;
       this.appService.resetAppData();
+      this.accountService.clearSession();
       this.router.navigate(['/']);
    }
 
-   testCookie(): void {
-      var observ = this.http.get(this.apiUrl + 'testcookie', {withCredentials:true});
-      observ.subscribe((response:any) => {
-         console.log('RESPONSE', response)
-      });
-   }
+   // testCookie(): void {
+   //    var observ = this.http.get(this.apiUrl + 'testcookie', {withCredentials:true});
+   //    observ.subscribe((response:any) => {
+   //       console.log('RESPONSE', response)
+   //    });
+   // }
 
    tryLogin(url:string = undefined, navigateFail:boolean = true): void {
       console.log('TRYING TO LOG IN', 'URL IS', url)

@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
    loginForm: FormGroup;
    randomAdmin:number;
    loginFailed:boolean = false;
+   submitStatus:string = 'NOSUBMIT';
    subscription;
+   statusSubscription;
    strings;
    constructor(private fb: FormBuilder, private router:Router, private accountLangService:AccountLanguageService, private authService:AuthService, private appService:AppDataService, private accountService:AccountService, private _cookieService:CookieService) {
       this.strings = accountLangService;
@@ -37,6 +39,9 @@ export class LoginComponent implements OnInit {
             this.loginFailed = true;
          }
       });
+      this.statusSubscription = this.authService.loginStatusSubject.subscribe((status:string) => {
+         this.submitStatus = status;
+      })
    }
 
    createForm(){

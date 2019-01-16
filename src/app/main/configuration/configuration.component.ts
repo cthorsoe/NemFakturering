@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../../services/handlers/account.service';
 import { Account } from '../../entities/account';
 import { AppDataService } from '../../services/app-data.service';
 import { ConfigurationLanguageService } from '../../services/languages/configuration/configuration-language.service';
+import { InvoiceTemplate } from '../../entities/invoice-template';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-configuration',
@@ -19,9 +21,12 @@ export class ConfigurationComponent implements OnInit {
    subscription;
    retrievedAccount:boolean
    updatedAccount:boolean
-   constructor(private fb:FormBuilder, private accountService:AccountService, private appService:AppDataService, private configurationLangService:ConfigurationLanguageService) { }
+   templates:InvoiceTemplate[]
+   apiUrl:string = environment.apiUrl
+   constructor(private fb:FormBuilder, private accountService:AccountService, private appService:AppDataService, private configurationLangService:ConfigurationLanguageService, private cd: ChangeDetectorRef) { }
 
    ngOnInit() {
+      this.setTemplates();
       this.lang = this.configurationLangService.langService.currentLang;
       this.strings = this.configurationLangService;
       this.retrievedAccount = false;
@@ -52,6 +57,7 @@ export class ConfigurationComponent implements OnInit {
                invoicenumberstartvalue: [this.account.configuration.invoicenumberstartvalue, Validators.required],
                invoicenumberprefix: [this.account.configuration.invoicenumberprefix],
                invoicenumberminlength: [this.account.configuration.invoicenumberminlength, Validators.required],
+               invoicetemplate: [this.account.configuration.invoicetemplate, Validators.required],
                usetaxes: [this.account.configuration.usetaxes],
                taxpercentage: [this.account.configuration.taxpercentage],
                itempricesincludetaxes: [this.account.configuration.itempricesincludetaxes],
@@ -59,6 +65,8 @@ export class ConfigurationComponent implements OnInit {
                bankname: [this.account.configuration.bankname],
                bankregnumber: [this.account.configuration.bankregnumber],
                bankaccountnumber: [this.account.configuration.bankaccountnumber],
+               logo: [null],
+               removeLogo: [false]
             })
          });
          console.log(this.configurationForm.value)
@@ -85,4 +93,34 @@ export class ConfigurationComponent implements OnInit {
       this.accountService.updateConfiguration(configurationForm.value as Account)
    }
 
+   setTemplates(){
+      this.templates = [
+         new InvoiceTemplate('DEFAULT', 'Default'),
+         new InvoiceTemplate('BASIC', 'Basic'),
+         new InvoiceTemplate('STYLISH', 'Stylish'),
+         new InvoiceTemplate('CLEAN', 'Clean'),
+         new InvoiceTemplate('FANCY', 'Fancy'),
+      ] as InvoiceTemplate[]
+
+      console.log('TEMPLATES', this.templates)
+   }
+
+   onFileChange(event) {
+      const reader = new FileReader();
+  
+      if(event.target.files && event.target.files.length) {
+          const [file] = event.target.files;
+          reader.readAsDataURL(file);
+          
+          reader.onload = () => {
+              this.configurationForm.patchValue({
+                  configuration: {
+                     logo: reader.result
+                  }
+              });
+              // need to run CD since file load runs outside of zone
+              this.cd.markForCheck();
+          };
+      }
+  }
 }

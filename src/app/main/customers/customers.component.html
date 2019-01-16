@@ -26,8 +26,8 @@
             </tr>
          </thead>
          <tbody>
-            <tr *ngFor="let customer of customers">
-               <td>{{ customer.id }}</td>
+            <tr *ngFor="let customer of customers; index as i">
+               <td>{{ (i + 1) }}</td>
                <td>{{ customer.name }}</td>
                <td>{{ customer.contactperson}}</td>
                <td>{{ customer.cvr }}</td>

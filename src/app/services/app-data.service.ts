@@ -17,6 +17,7 @@ export class AppDataService {
    customers:Customer[];
    items:Item[];
    invoices:Invoice[];
+   // subscription:any;
 
    
    accountSubject:Subject<Account> = new Subject<Account>();
@@ -26,6 +27,8 @@ export class AppDataService {
    itemsSubject:Subject<Item[]> = new Subject<Item[]>();
 
    invoicesSubject:Subject<Invoice[]> = new Subject<Invoice[]>();
+
+   // subscriptionSubject:Subject<any> = new Subject<any>();
 
    constructor() { 
    }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faReceipt, faCog, faCogs, faInfoCircle, /* faCubes, */ faShoppingCart, faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faReceipt, faCog, faCogs, faInfoCircle, /* faCubes, */ faShoppingCart, faBars, faCaretDown, faMoneyBillWave } from '@fortawesome/free-solid-svg-icons';
 import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { MainLanguageService } from '../../services/languages/main/main-language.service';
@@ -7,6 +7,7 @@ import { AccountService } from '../../services/handlers/account.service';
 import { AppDataService } from '../../services/app-data.service';
 import { Account } from '../../entities/account';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 @Component({
@@ -18,6 +19,7 @@ export class MainComponent implements OnInit {
    isAdmin:boolean;
    strings:MainLanguageService;
    account:Account = new Account();
+   subscriptionRequired:boolean = environment.subscriptionRequired
    faHome = faHome;
    faReceipt = faReceipt;
    faAddressBook = faAddressBook;
@@ -28,6 +30,7 @@ export class MainComponent implements OnInit {
    faInfoCircle = faInfoCircle;
    faBars = faBars;
    faCaretDown = faCaretDown;
+   faMoneyBillWave = faMoneyBillWave;
 
    subscription;
 

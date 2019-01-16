@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LanguageService } from 'src/app/services/language.service';
-import { LanguageString } from 'src/app/entities/language-string';
+import { LanguageService } from '../../language.service';
+import { LanguageString } from '../../../entities/language-string';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,11 @@ export class AccountLanguageService {
    dontHaveAnAccount:LanguageString = new LanguageString('Don\'t have an account', 'Har du ingen konto endnu');
    registerHere:LanguageString = new LanguageString('Register here', 'Opret dig her');
    loginFailed:LanguageString = new LanguageString('The login-information was not correct. Try again.', 'Login-informationerne var ikke korrekte. Prøv igen.');
+   notVerified:LanguageString = new LanguageString('Your account has not been verified. Please check your email', 'Din konto er ikke blevet verificeret. Check din email.');
    accountCreatedSuccess:LanguageString = new LanguageString('The account has been created successfully. You can now login using your new account.', 'Kontoen blev oprettet successfuldt. Du kan ku logge ind med din nye account.');
+   usernameOrEmailTaken:LanguageString = new LanguageString('The username and/or email is already taken. Try something else.', 'Brugernavnet eller emailen er allerede taget. Prøv noget andet.');
+   invalidEmail:LanguageString = new LanguageString('The email is invalid. Please verify the email and try again.', 'Emailen er invalid. Venligst verificer emailen og prøv igen.');
+   submitError:LanguageString = new LanguageString('An error occured. Please try again later.', 'Der opstod en fejl. Venligst prøv igen senere.');
 
    constructor(public langService:LanguageService) { }
 }

@@ -33,10 +33,10 @@
                </tr>
             </thead>
             <tbody>
-               <tr *ngFor="let item of items">
-                  <td>{{ item.id }}</td>
+               <tr *ngFor="let item of items; index as i">
+                  <td>{{ (i + 1) }}</td>
                   <td>{{ item.name }}</td>
-                  <td>{{ item.price }}</td>
+                  <td>{{ item.defaultprice }}</td>
                   <td (click)="showItemModal(item, $event)" class="icon-td"><a><fa-icon [icon]="faEdit"></fa-icon></a></td>
                   <td (click)="deleteItem(item.id)" class="icon-td"><a><fa-icon [icon]="faTimes"></fa-icon></a></td>
                </tr>

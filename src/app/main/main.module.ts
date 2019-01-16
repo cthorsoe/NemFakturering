@@ -11,6 +11,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { ItemsComponent } from './items/items.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
    imports: [
@@ -27,7 +28,8 @@ import { ItemsComponent } from './items/items.component';
       InvoiceListComponent, 
       CustomersComponent, 
       ItemsComponent,
-      ConfigurationComponent
+      ConfigurationComponent,
+      SubscriptionComponent
    ],
    providers: [TitleCasePipe]
 })

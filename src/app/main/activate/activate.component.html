@@ -1,0 +1,15 @@
+<div class="card">
+   <div class="card-body">
+      <div *ngIf="account.activated; then activated else notActivated"></div>
+      <ng-template #activated>
+         <h3>You account is already activated!</h3>
+      </ng-template>
+      <ng-template #notActivated>
+         <h3>{{ strings.activateYourAccount[strings.langService.currentLang] }}</h3>
+         <p class="lead">{{ strings.activateYourAccountLead[strings.langService.currentLang] }}</p>
+         <p>Activating now will make your account active until: {{ this.activationEndDate | date:'dd-MM-yyyy' }}</p>
+         <button class="btn btn-primary" (click)="openCheckout()">{{ strings.activate[strings.langService.currentLang] }}</button>
+      </ng-template>
+   </div>
+</div>
+   

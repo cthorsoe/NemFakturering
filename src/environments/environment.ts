@@ -4,7 +4,9 @@
 
 export const environment = {
    production: false,
-  apiUrl:'http://localhost:3333/'
+   stripeKey: 'pk_test_gc15AzWlDIH23N8xneN53jWr',
+   subscriptionRequired: true,
+   apiUrl:'http://localhost:3333/'
    // apiUrl:'https://api.cthorsoe.host/'
 };
 

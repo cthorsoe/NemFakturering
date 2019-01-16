@@ -9,6 +9,7 @@ import { InvoicesLanguageService } from '../../services/languages/invoices/invoi
 import { AppDataService } from '../../services/app-data.service';
 import { ItemService } from '../../services/handlers/item.service';
 import * as jsPDF from 'jspdf'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-invoice',
@@ -18,6 +19,7 @@ import * as jsPDF from 'jspdf'
 
 export class InvoiceComponent implements OnInit, OnDestroy {
    account:Account;
+   subscriptionRequired:boolean = environment.subscriptionRequired;
    customers:Customer[];
    searchItems:Item[];
    invoiceForm: FormGroup;
@@ -26,21 +28,19 @@ export class InvoiceComponent implements OnInit, OnDestroy {
    itemsProps:any = {top:"0px", left: "0px", width:"0px"};
    lastSearchedIndex:number = -1;
    createAsNewItem:Item = new Item(0)
-   // itemsSubscription;
    constructor(private invoiceService:InvoiceService, private customerService:CustomerService, private itemsService:ItemService, private invoiceLangService:InvoicesLanguageService, private fb:FormBuilder, private appService:AppDataService) { 
       this.strings = invoiceLangService;
+
    }
    
    ngOnInit() {
       this.customersSubscription = this.appService.customersSubject.subscribe((customers: Customer[]) => {
-         console.log('VIEW SUBSCRIBE TRIGGER');
          this.customers = customers;
       });
       this.customerService.setCustomers();
       this.itemsService.setItems();
       this.account = this.appService.account;
       this.createForm();
-      console.log('form', this.invoiceForm);
       
    }
 
