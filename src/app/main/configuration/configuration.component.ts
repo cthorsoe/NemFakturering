@@ -97,9 +97,9 @@ export class ConfigurationComponent implements OnInit {
       this.templates = [
          new InvoiceTemplate('DEFAULT', 'Default'),
          new InvoiceTemplate('BASIC', 'Basic'),
-         new InvoiceTemplate('STYLISH', 'Stylish'),
+        //  new InvoiceTemplate('STYLISH', 'Stylish'),
          new InvoiceTemplate('CLEAN', 'Clean'),
-         new InvoiceTemplate('FANCY', 'Fancy'),
+        //  new InvoiceTemplate('FANCY', 'Fancy'),
       ] as InvoiceTemplate[]
 
       console.log('TEMPLATES', this.templates)

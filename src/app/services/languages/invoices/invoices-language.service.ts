@@ -9,6 +9,7 @@ export class InvoicesLanguageService {
 
    generateInvoice:LanguageString = new LanguageString('Generate invoice', 'Generer faktura');
    generateInvoiceDescription:LanguageString = new LanguageString('Fill the form to create your invoice', 'Udfyld formen for at lave din faktura');
+   seeYourInvoices:LanguageString = new LanguageString('See your invoices', 'Se dine fakturaer')
    customer:LanguageString = new LanguageString('Customer', 'Kunde');
    chooseCustomer:LanguageString = new LanguageString('Choose customer', 'Vælg kunde');
    items:LanguageString = new LanguageString('Items', 'Varer');

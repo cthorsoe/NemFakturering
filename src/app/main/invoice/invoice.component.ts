@@ -96,7 +96,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
          this.setItemsCss(props)
          var value:string = input.value;
          if(value.length > 0){
-            this.searchForItems(value);
+            this.searchForItems(value.toLowerCase());
          }else{
             this.searchItems = [];
          }

@@ -199,7 +199,7 @@ export class InvoiceService {
    }
 
    generateBasicInvoice(doc:jsPDF, invoice:Invoice, account:Account, logo, taxPercentage:number, currentLang:string):jsPDF{
-      console.log('GENERATING BASIC INVOICE')
+      console.log('GENERATING BASIC INVOICE', invoice)
       const xAxis = 15;
       let yAxis = 20;
       let innerPageWidth = doc.internal.pageSize.getWidth() - (xAxis * 2)

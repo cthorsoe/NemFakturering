@@ -21,7 +21,7 @@ export class AccountLanguageService {
    passwordConfirmRequired:LanguageString = new LanguageString('Please type your password again', 'Indtast venligst dit password igen');
    passwordsNotMatching:LanguageString = new LanguageString('The passwords is not matching', 'De to passwords er ikke ens');
    alreadyHaveAnAccount:LanguageString = new LanguageString('Already have an account', 'Har du allerede en konto');
-   logInHere:LanguageString = new LanguageString('Log ind here', 'Log ind her');
+   logInHere:LanguageString = new LanguageString('Log in here', 'Log ind her');
    
    dontHaveAnAccount:LanguageString = new LanguageString('Don\'t have an account', 'Har du ingen konto endnu');
    registerHere:LanguageString = new LanguageString('Register here', 'Opret dig her');
